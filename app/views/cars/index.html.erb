@@ -1,0 +1,8 @@
+<h1>車種一覧</h1>
+
+<ul>
+  <% @cars.each do |car| %>
+    <li><%= link_to car.name, car %></li>
+  <% end %>
+</ul>
+<%= link_to '車種の追加', new_car_path %>

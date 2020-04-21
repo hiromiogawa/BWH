@@ -1,0 +1,10 @@
+<h1>車種追加</h1>
+
+<%= form_for(@car) do |f| %>
+  <%= f.label :name, '車種名' %>
+  <%= f.text_field :name %>
+  <%= f.label "画像をアップロード" %><br><%= f.file_field :img %>
+  <%= f.submit '投稿' %>
+<% end %>
+
+<%= link_to '戻る', :back %>

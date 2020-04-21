@@ -1,0 +1,19 @@
+
+<p>開催日:<%= @event.day %></p>
+<p>サーキット:<%= @circuit.name %></p>
+<p>ドライバー:<%= @datalist.user.name %></p>
+<% unless @besttimes.blank? %>
+<p>ベストタイム：<%= @besttimes.min %></p>
+<% end %>
+
+<% @heats.each do |heat| %>
+<%= link_to heat.number, heat %>
+<%= heat.car.name %>
+<%= heat.laptimes.minimum(:total) %>
+<% end %>
+
+<% if current_user  == @datalist.user %>
+<%= link_to 'ヒートの追加', new_heat_path(circuit_id: @circuit.id, event_id: @event.id) %>
+<% end %>
+
+<%= link_to '戻る', event_path(@event, circuit_id: @circuit.id) %>

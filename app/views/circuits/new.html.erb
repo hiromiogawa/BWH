@@ -1,0 +1,10 @@
+<h1>サーキットの新規追加</h1>
+
+<%= form_for(@circuit) do |f| %>
+  <%= f.label :name, 'サーキット' %>
+  <%= f.text_field :name %>
+  <%= f.label "画像をアップロード" %><br><%= f.file_field :img %>
+  <%= f.submit '投稿' %>
+<% end %>
+
+<%= link_to '一覧に戻る', circuits_path %>

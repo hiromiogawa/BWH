@@ -1,0 +1,7 @@
+<h1><%= @tire.tirename %> </h1>
+
+<p><%= @tire.tirename %></p>
+
+<%= link_to '一覧に戻る', tires_path %>
+<%= link_to 'このタイヤを編集する', edit_tire_path(@tire) %>
+<%= link_to 'このタイヤを削除する', @tire, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>

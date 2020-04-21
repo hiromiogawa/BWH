@@ -1,0 +1,31 @@
+<h1><%= @circuit.name %> </h1>
+<% if @circuit.img? %>
+<p><%= image_tag @circuit.img.url %></p>
+<% end %>
+
+<% unless @besttimes.blank? %>
+<p>ベストタイム：
+  <% @heats.each do |heat| %>
+    <%= link_to(heat) do %>
+      <%= @besttime %>
+      <%= heat.datalist.user.name %>
+    <% end %>
+  <% end %>
+</p>
+<% end %>
+
+<% @events.each do |event| %>
+  <%= link_to event.day, event_path(event, circuit_id: @circuit.id)  %>
+<% end %>
+<% if current_user.partake?(@circuit) %>
+<%= form_for(@event) do |f| %>
+<%= f.date_field :day, class: '' %>
+<%= hidden_field_tag :circuit_id, @circuit.id %>
+<%= f.submit '開催日を追加', class: '' %>
+<% end %>
+<% end %>
+
+<%= render 'joins/partake_button', circuit: @circuit %>
+<%= link_to '一覧に戻る', circuits_path %>
+<%= link_to 'このサーキットを編集する', edit_circuit_path(@circuit) %>
+<%= link_to 'このサーキットを削除する', @circuit, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>

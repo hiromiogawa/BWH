@@ -1,0 +1,8 @@
+<h1>タイヤ一覧</h1>
+
+<ul>
+  <% @tires.each do |tire| %>
+    <li><%= link_to tire.tirename, tire %></li>
+  <% end %>
+</ul>
+<%= link_to 'タイヤの追加', new_tire_path %>

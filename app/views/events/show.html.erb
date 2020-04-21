@@ -1,0 +1,27 @@
+<h1><%= @event.day %><%= @circuit.name %></h1>
+<% unless @besttimes.blank? %>
+<p>ベストタイム：
+  <% @heats.each do |heat| %>
+    <%= link_to(heat) do %>
+      <%= @besttime %>
+      <%= heat.datalist.user.name %>
+    <% end %>
+  <% end %>
+</p>
+<% end %>
+
+<% @datalists.each do |datalist| %>
+<%= link_to datalist.user.name, datalist_path(datalist, circuit_id: @circuit.id, event_id: @event.id)  %>
+<% end %>
+
+<% if current_user.dataregister?(@event) %>
+<% else %>
+<%= form_for(current_user.datalists.build) do |f| %>
+<%= hidden_field_tag :event_id, @event.id %>
+<%= hidden_field_tag :circuit_id, @circuit.id %>
+<%= f.submit 'データを登録する', class: '' %>
+<% end %>
+<% end %>
+
+<%= link_to '戻る', @circuit %>
+<%= link_to 'この開催日を削除する', @event, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }  %>

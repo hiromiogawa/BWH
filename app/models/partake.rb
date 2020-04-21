@@ -1,0 +1,2 @@
+class Partake < Join
+end

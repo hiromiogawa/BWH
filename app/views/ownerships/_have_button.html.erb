@@ -1,0 +1,13 @@
+  <% if current_user.have?(car) %>
+    <%= form_tag( ownership_path(car.id), method: :delete) do  %>
+      <%= hidden_field_tag :car_id, car.id %>
+      <%= hidden_field_tag :type, 'Have' %>
+      <%= submit_tag 'マイカーから削除', class: '' %>
+    <% end %>
+  <% else %>
+    <%= form_for(current_user.ownerships.build) do |f| %>
+      <%= hidden_field_tag :car_id, car.id %>
+      <%= hidden_field_tag :type, 'Have' %>
+      <%= f.submit 'マイカーに追加', class: '' %>
+    <% end %>
+  <% end %>

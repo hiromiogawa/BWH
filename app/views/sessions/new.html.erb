@@ -1,0 +1,14 @@
+<table>
+  <%= form_for(:session, url: login_path) do |f| %>
+  <tr>
+    <th>メールアドレス</th>
+    <td><%= f.email_field :email, class: '' %></td>
+  </tr>
+  <tr>
+    <th>パスワード</th>
+    <td><%= f.password_field :password, class: '' %></td>
+  </tr>
+</table>
+<div class="btn"><%= f.submit 'ログイン', class: '' %></div>
+<% end %>
+<%= link_to '新規登録', signup_path %>

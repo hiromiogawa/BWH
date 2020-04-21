@@ -1,0 +1,14 @@
+<h1><%= @car.name %> の編集ページ</h1>
+
+<%= form_for(@car) do |f| %>
+  <%= f.label :name, '車種名' %>
+  <%= f.text_field :name %>
+  <% if @car.img? %>
+  <p><%= image_tag @car.img.url %></p>
+  <% end %>
+  <%= f.label "画像を変更" %><br><%= f.file_field :img %>
+  <%= f.submit '投稿' %>
+<% end %>
+
+<%= link_to '一覧に戻る', cars_path %>
+<%= link_to 'この車種を削除する', @car, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>

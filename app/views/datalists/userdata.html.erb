@@ -1,0 +1,15 @@
+<%= @circuit.name %>
+<%= @user.name %>
+<% unless @besttimes.blank? %>
+<p>ベストタイム：
+  <% @heats.each do |heat| %>
+    <%= link_to(heat) do %>
+      <%= @besttime %>
+    <% end %>
+  <% end %>
+</p>
+<% end %>
+<% @datalists.each do |datalist| %>
+<%= link_to datalist.event.day, datalist_path(datalist, circuit_id: @circuit.id, event_id: datalist.event.id)  %>
+<% end %>
+<%= link_to '戻る', :back %>

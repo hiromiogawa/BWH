@@ -1,0 +1,50 @@
+<%= @circuit.name %>
+<%= @event.day %>
+<%= @heat.car.name %>
+<%= @user.name %>
+<% @laptimes.each do |laptime| %>
+<%= laptime.sec1 %>
+<%= laptime.sec2 %>
+<%= laptime.sec3 %>
+<%= laptime.total %>
+<% end %>
+
+<% @settings.each do |setting| %>
+<%= @heat.tire.tirename %>
+<table class="press">
+  <tr>
+    <th></th>
+    <th>右フロント</th>
+    <th>左フロント</th>
+    <th>右リア</th>
+    <th>左リア</th>
+  </tr>
+  <tr>
+    <th>タイヤ幅</th>
+    <td colspan="2"><%= setting.ftirewidth %></td>
+    <td colspan="2"><%= setting.rtirewidth %></td>
+  </tr>
+  <tr>
+    <th>空気圧</th>
+    <td><%= setting.frpress %></td>
+    <td><%= setting.flpress %></td>
+    <td><%= setting.rrpress %></td>
+    <td><%= setting.rlpress %></td>
+  </tr>
+  <tr>
+    <th>減衰力</th>
+    <td><%= setting.frdecay %></td>
+    <td><%= setting.fldecay %></td>
+    <td><%= setting.rrdecay %></td>
+    <td><%= setting.rldecay %></td>
+  </tr>
+  <tr>
+    <td colspan="4"><%= setting.remarks %></td>
+  </tr>
+</table>
+<% end %>
+<% if current_user  == @datalist.user %>
+<%= link_to '編集する', edit_heat_path(@heat) %>
+<%= link_to '削除する', @heat, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
+<% end %>
+<%= link_to '戻る', :back %>

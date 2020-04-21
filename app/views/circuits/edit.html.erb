@@ -1,0 +1,14 @@
+<h1><%= @circuit.name %> の編集ページ</h1>
+
+<%= form_for(@circuit) do |f| %>
+  <%= f.label :name, 'サーキット' %>
+  <%= f.text_field :name %>
+  <% if @circuit.img? %>
+  <p><%= image_tag @circuit.img.url %></p>
+  <% end %>
+  <%= f.label "画像をアップロード" %><br><%= f.file_field :img %>
+  <%= f.submit '投稿' %>
+<% end %>
+
+<%= link_to '一覧に戻る', circuits_path %>
+<%= link_to 'このサーキットを削除する', @circuit, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>

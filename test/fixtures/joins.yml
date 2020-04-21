@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  day: 2020-03-18
+  date: one
+  circuit: 
+
+two:
+  day: 2020-03-18
+  date: two
+  circuit: 

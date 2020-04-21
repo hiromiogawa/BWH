@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sec1: 1.5
+  sec2: 1.5
+  sec3: 1.5
+  total: 1.5
+  data: one
+
+two:
+  sec1: 1.5
+  sec2: 1.5
+  sec3: 1.5
+  total: 1.5
+  data: two

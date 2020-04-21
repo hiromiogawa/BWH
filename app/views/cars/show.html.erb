@@ -1,0 +1,13 @@
+<h1><%= @car.name %> </h1>
+
+<p><%= @car.name %></p>
+<% if @car.img? %>
+<p><%= image_tag @car.img.url %></p>
+<% end %>
+<% @havings_users.each do |user| %>
+<%= link_to user.name, user_path(user) %>
+<% end %>
+<%= render 'ownerships/have_button', car: @car %>
+<%= link_to '一覧に戻る', cars_path %>
+<%= link_to 'この車種を編集する', edit_car_path(@car) %>
+<%= link_to 'この車種を削除する', @car, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>

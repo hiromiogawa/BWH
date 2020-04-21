@@ -1,0 +1,13 @@
+  <% if current_user.partake?(@circuit) %>
+    <%= form_tag(join_path(circuit.id), method: :delete) do  %>
+      <%= hidden_field_tag :circuit_id, circuit.id %>
+      <%= hidden_field_tag :type, 'Partake' %>
+      <%= submit_tag 'マイサーキットから削除', class: '' %>
+    <% end %>
+  <% else %>
+    <%= form_for(current_user.joins.build) do |f| %>
+      <%= hidden_field_tag :circuit_id, circuit.id %>
+      <%= hidden_field_tag :type, 'Partake' %>
+      <%= f.submit 'マイサーキットに追加', class: '' %>
+    <% end %>
+  <% end %>
