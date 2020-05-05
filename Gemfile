@@ -7,6 +7,9 @@ ruby '2.6.5'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4', group: [:development, :test]
+#heroku
+gem 'pg', group: :production
+
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
@@ -51,8 +54,3 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'kaminari'
 gem 'carrierwave'
-
-#heroku
-group :production do
-  gem 'pg', '0.21.0'
-end
