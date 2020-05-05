@@ -24,6 +24,6 @@ production:
   adapter: postgresql
   encoding: unicode
   pool: 5
-  database: message-board_production
-  username: message-board
+  database: BWH_production
+  username: BWH
   password: <%= ENV['BWH_DATABASE_PASSWORD'] %>
