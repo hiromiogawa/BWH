@@ -1,24 +1,49 @@
-	<%= form_for(@user) do |f| %>
-  <%= render 'layouts/error_messages', model: f.object %>
-	<table>
-		<tr>
-			<th>ユーザーネーム</th>
-			<td><%= f.text_field :name, class: '' %></td>
-		</tr>
-		<tr>
-			<th>メールアドレス</th>
-			<td><%= f.email_field :email, class: '' %></td>
-		</tr>
-		<tr>
-			<th>パスワード</th>
-			<td><%= f.password_field :password, class: '' %></td>
-		</tr>
-		<tr>
-			<th>パスワード(確認)</th>
-			<td><%= f.password_field :password_confirmation, class: '' %></td>
-		</tr>
+<% @page_class = 'user' %>
 
-	</table>
-	  <div class="btn"><%= f.submit '変更する', class: '' %> </div>
-	<% end %>
+<div class="cts">
+  <section class="user_data">
+    <div class="profile bg-carbon">
+      <div class="bg-screw">
+				<%= form_for(@user) do |f| %>
+					<div class="inner">
+	          <div class="thumbnail">
+							<div id="img">
+								<% if @user.img? %>
+		              <%= image_tag @user.img.url %>
+		            <% else %>
+		              <%= image_tag('common/noimage.jpg') %>
+		            <% end %>
+							</div>
+							<div class="btn">
+								<%= f.label :img, class: "form-img" do %>
+									<span>change image</span>
+									<%= f.file_field :img  %>
+								<% end %>
+							</div>
+						</div>
+						<div class="statsu edit">
+							<section>
+	              <h2 class="heading01 ic ic-h">user name</h2>
+								<p><%= f.text_field :name, class: '' %></p>
+							</section>
+							<section>
+	              <h2 class="heading01 ic ic-mail">email</h2>
+								<p><%= f.email_field :email, class: '' %></p>
+							</section>
+							<section>
+								<h2 class="heading01 ic ic-key">password</h2>
+								<p><%= f.password_field :password, class: '' %></p>
+								<p class="check">check</p>
+								<p><%= f.password_field :password_confirmation, class: '' %></p>
+							</section>
+							<div class="btn-wrap center">
+								<div class="btn"><%= f.submit 'change', class: '' %> </div>
+                <div class="btn"><%= link_to "back", (@user) %></div>
+							</div>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</section>
 </div>

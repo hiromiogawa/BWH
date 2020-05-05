@@ -1,10 +1,1 @@
-<%= @user.name %>
-<% @have_cars.each do |car| %>
-<%= link_to car.name, car_path(car) %>
-<% end %>
-<% @partake_circits.each do |circuit| %>
-<% if circuit.img? %>
-  <p><%= image_tag circuit.img.url %></p>
-<% end %>
-<%= link_to circuit.name, userdata_path(user_id: @user.id, circuit_id: circuit.id, ) %>
-<% end %>
+<%= render 'users/userdata' %>

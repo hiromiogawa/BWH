@@ -1,8 +1,30 @@
-<h1>車種一覧</h1>
-
-<ul>
-  <% @cars.each do |car| %>
-    <li><%= link_to car.name, car %></li>
-  <% end %>
-</ul>
-<%= link_to '車種の追加', new_car_path %>
+<div class="cts">
+  <section>
+    <div class="profile bg-carbon">
+      <div class="bg-screw">
+        <h2 class="heading01 ic ic-car">car list</h2>
+          <ul class="col3">
+            <% @cars.each do |car| %>
+              <li class="bg-aluminum">
+                <%= link_to (car), class:'bg-screw' do %>
+                  <div class="img-area match-height">
+                    <% if car.img? %>
+                      <%= image_tag car.img.url %>
+                    <% else %>
+                      <%= image_tag('car/car_noimage.jpg') %>
+                    <% end %>
+                  </div>
+                  <p><%= car.name %></p>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+          <% if logged_in? %>
+            <% if current_user.admin?  %>
+              <div class="btn"><%= link_to 'add newcar', new_car_path %></div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </section>
+  </div>

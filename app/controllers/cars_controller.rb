@@ -1,4 +1,6 @@
 class CarsController < ApplicationController
+  before_action :require_user_logged_in, only: [:edit, :update, :destroy]
+  
   def index
     @cars = Car.all.order(:name)
   end
@@ -6,6 +8,7 @@ class CarsController < ApplicationController
   def show
     @car = Car.find(params[:id])
     @havings_users = @car.havings_users
+    @circuits = Circuit.all
   end
 
   def new

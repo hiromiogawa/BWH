@@ -1,0 +1,75 @@
+@import "_mixin";
+@import "variable";
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $color01;
+  padding: 12px 24px;
+  width: 100%;
+  z-index: 999;
+  margin-bottom: 40px;
+
+  ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    li {
+      display: flex;
+      justify-content: center;;
+      align-items: center;;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background-image: url(/assets/common/com_meter01.png);
+      background-size: contain;
+      background-repeat: no-repeat;;
+      padding: 4px;
+
+      &:not(:last-of-type) {
+        margin-right: 24px;
+      }
+
+      a {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        font-size: 16px;
+        font-family: $webfont02;
+        align-items: center;
+        background-color: $color01;
+        border-radius: 50%;
+        width: 66px;
+        height: 66px;
+        text-decoration: none;
+        color: $color03;
+        transition: text-shadow .35s;
+        text-shadow: 0;
+
+        &::before {
+          content: "";
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, .6);
+          position: absolute;
+          border-radius: 50%;
+          transition: background .35s;
+        }
+
+        &:hover {
+          text-shadow: 0 0 10px $color03,0 0 15px $color03;
+
+          &::before {
+            background: rgba(0, 0, 0, 0);
+          }
+        }
+
+        &.font-c-red:hover {
+          text-shadow: 0 0 10px $color04,0 0 15px $color04;
+        }
+      }
+    }
+  }
+}

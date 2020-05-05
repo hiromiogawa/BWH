@@ -1,0 +1,40 @@
+@import "_mixin";
+@import "variable";
+
+* {
+  word-break: break-all;
+  line-height: 1;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: $fontsize;
+}
+
+body {
+  background-color: $color01;
+  color: $color02;
+  font-family: "游ゴシック Medium", "游ゴシック体", "Yu Gothic Medium", YuGothic, "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  font-size: 1.6rem;
+}
+
+a,input[type="submit"] {
+  color: $color02;
+  text-decoration: none;
+
+  &:hover {
+    color: $color03;
+  }
+}
+
+ul, li {
+  list-style: none;
+}
+
+img {
+  line-height: 0;
+}
+
+dt {
+  margin-bottom: .4rem;
+}

@@ -1,0 +1,42 @@
+// メディアクエリ
+@mixin max-lg {
+  @media screen and (max-width: $max-lg) {
+    @content;
+  }
+}
+@mixin max-md {
+  @media screen and (max-width: $max-md) {
+    @content;
+  }
+}
+@mixin max-sm {
+  @media screen and (max-width: $max-sm)  {
+    @content;
+  }
+}
+@mixin max-xs {
+  @media screen and (max-width: $max-xs)  {
+    @content;
+  }
+}
+
+@mixin min-lg {
+  @media screen and (min-width: $min-lg) {
+    @content;
+  }
+}
+@mixin min-md {
+  @media screen and (min-width: $min-md)  {
+    @content;
+  }
+}
+@mixin min-sm {
+  @media screen and (min-width: $min-sm)  {
+    @content;
+  }
+}
+@mixin min-xs {
+  @media screen and (min-width: $min-xs)  {
+    @content;
+  }
+}

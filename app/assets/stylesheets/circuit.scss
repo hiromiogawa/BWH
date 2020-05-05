@@ -1,0 +1,22 @@
+@import "_mixin";
+@import "variable";
+
+.circuit {
+
+  .form {
+    font-size: 0;
+    margin-bottom: 1.6rem;
+
+    input[type="date"] {
+      padding: .65rem;
+      vertical-align: middle;
+      border: solid 2px $color03;
+      border-right: none;
+    }
+
+    .btn {
+      margin-top: 0;
+      vertical-align: middle;
+    }
+  }
+}

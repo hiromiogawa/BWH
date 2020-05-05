@@ -1,14 +1,42 @@
-<h1><%= @circuit.name %> の編集ページ</h1>
+<% @page_class = 'circuit' %>
 
-<%= form_for(@circuit) do |f| %>
-  <%= f.label :name, 'サーキット' %>
-  <%= f.text_field :name %>
-  <% if @circuit.img? %>
-  <p><%= image_tag @circuit.img.url %></p>
+<div class="cts">
+  <section>
+    <%= form_for(@circuit) do |f| %>
+    <div class="profile bg-carbon">
+      <div class="bg-screw">
+        <div class="col2">
+          <div class="cell">
+            <div class="img-area" id="img">
+              <% if @circuit.img? %>
+                <%= image_tag @circuit.img.url %>
+              <% else %>
+                <%= image_tag('common/noimage.jpg') %>
+              <% end %>
+            </div>
+            <div class="center">
+              <div class="btn">
+                <%= f.label :img, class: "form-img" do %>
+                  <span>change image</span>
+                  <%= f.file_field :img  %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div class="cell edit">
+            <section>
+              <h2 class="heading01 ic ic-car">circuit name</h2>
+              <p><%= f.text_field :name %></p>
+            </section>
+          </div>
+        </div>
+        <div class="btn-wrap">
+          <div class="btn"><%= f.submit 'change' %></div>
+          <div class="btn"><%= link_to 'back', circuits_path %></div>
+          <div><%= link_to 'delete', @circuit, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></div>
+        </div>
+      </div>
+    </div>
   <% end %>
-  <%= f.label "画像をアップロード" %><br><%= f.file_field :img %>
-  <%= f.submit '投稿' %>
-<% end %>
-
-<%= link_to '一覧に戻る', circuits_path %>
-<%= link_to 'このサーキットを削除する', @circuit, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
+</section>
+</div>

@@ -1,4 +1,6 @@
 class Car < ApplicationRecord
+  validates :name, presence: true
+
   mount_uploader :img, ImageUploader
 
   has_many :heats, dependent: :destroy

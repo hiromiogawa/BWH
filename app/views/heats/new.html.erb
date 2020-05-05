@@ -1,69 +1,133 @@
 <%= javascript_include_tag 'laptime' %>
 
-<%= @event.day %>
-<%= @circuit.name %>
-<%= @datalist.id %>
-<%= @datalist.user.name %>
-<% @have_cars.each do |car| %>
-<%= link_to car.name, car_path(car) %>
-<% end %>
-<%= form_for(@heat) do |f| %>
-<%= f.label :number, 'ヒート' %>
-<%= f.select :number, [1, 2, 3, 4, 5] ,class: '' %>
-<%= f.label :car_id, '車種名' %>
-<%= f.select :car_id, @have_cars.map { |have_car| [have_car.name, have_car.id] } ,class: '' %>
-<table class="time">
-<%= f.fields_for :laptimes do |laptime_f| %>
-  <tr>
-    <th><%= laptime_f.label :sec1, 'sector1' %></th>
-    <td><%= laptime_f.number_field :sec1, step: "0.001",class: 'sector sec1' %></td>
-    <th><%= laptime_f.label :sec2, 'sector2' %></th>
-    <td><%= laptime_f.number_field :sec2, step: "0.001",class: 'sector sec2' %></td>
-    <th><%= laptime_f.label :sec3, 'sector3' %></th>
-    <td><%= laptime_f.number_field :sec3, step: "0.001",class: 'sector sec3' %></td>
-    <th><%= laptime_f.label :total, 'total' %></th>
-    <td><%= laptime_f.number_field :total, step: "0.001",class: 'total' %></td>
-  </tr>
-<% end %>
-</table>
-<%= f.fields_for :settings do |setting_f| %>
-<h3>セッティング</h3>
-<%= f.select :tire_id, @tires.map { |tire| [tire.tirename, tire.id] } ,class: '' %>
-<table class="press">
-  <tr>
-    <th></th>
-    <th>右フロント</th>
-    <th>左フロント</th>
-    <th>右リア</th>
-    <th>左リア</th>
-  </tr>
-  <tr>
-    <th>タイヤ幅</th>
-    <td colspan="2"><%= setting_f.number_field :ftirewidth ,class: '' %></td>
-    <td colspan="2"><%= setting_f.number_field :rtirewidth ,class: '' %></td>
-  </tr>
-  <tr>
-    <th>空気圧</th>
-    <td><%= setting_f.number_field :frpress, step: "0.01" ,class: '' %></td>
-    <td><%= setting_f.number_field :flpress, step: "0.01" ,class: '' %></td>
-    <td><%= setting_f.number_field :rrpress, step: "0.01" ,class: '' %></td>
-    <td><%= setting_f.number_field :rlpress, step: "0.01" ,class: '' %></td>
-  </tr>
-  <tr>
-    <th>減衰力</th>
-    <td><%= setting_f.number_field :frdecay ,class: '' %></td>
-    <td><%= setting_f.number_field :fldecay ,class: '' %></td>
-    <td><%= setting_f.number_field :rrdecay ,class: '' %></td>
-    <td><%= setting_f.number_field :rldecay ,class: '' %></td>
-  </tr>
-  <tr>
-    <td colspan="4"><%= setting_f.text_area :remarks ,class: '' %></td>
-  </tr>
-</table>
-<% end %>
+<% @page_class = 'heat' %>
+<div class="cts">
+  <section>
+    <div class="bg-carbon">
+      <div class="bg-screw">
+        <div class="edit">
+          <%= form_for(@heat) do |f| %>
+            <%= f.hidden_field :circuit_id, :value => @circuit.id %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+          <section>
+            <h2 class="heading02 ic ic-calendar">attack day</h2>
+            <p><%= @event.day %></p>
+          </section>
+          <section>
+            <h2 class="heading02 ic ic-circuit">circuit</h2>
+            <p><%= link_to @circuit.name , circuit_path(@circuit) %></p>
+          </section>
+          <section>
+            <h2 class="heading02 ic ic-h">dirver</h2>
+            <p><%= link_to @user.name , user_path(@user) %></p>
+          </section>
+            <section>
+              <h2 class="heading02 ic ic-cond">heat</h2>
+              <table class="tb02">
+                <tr>
+                  <th>heat</th>
+                  <th>car</th>
+                </tr>
+                <tr>
+                  <td><%= f.select :number, [1, 2, 3, 4, 5],{} ,class: 'wd01' %></td>
+                  <td><%= f.select :car_id, @have_cars.map { |have_car| [have_car.name, have_car.id] },{} ,class: 'wd02' %></td>
+                </tr>
+              </table>
+            </section>
+            <section>
+              <h2 class="heading02 ic ic-cond">condition</h2>
+              <table class="tb02">
+                <tr>
+                  <th>weather</th>
+                  <th>temperature</th>
+                </tr>
+                <tr>
+                  <td><%= f.select :weather, ['晴れ', '曇り', '雨', '雪'],{} ,class: 'wd02' %></td>
+                  <td><%= f.number_field :temp, step: "0.01" ,class: 'wd02' %></td>
+                </tr>
+                <tr>
+                  <th>road condition</th>
+                  <th>road temperature</th>
+                </tr>
+                <tr>
+                  <td><%= f.select :roadcondition, ['ドライ', 'ハーフウェット', 'ウェット'] ,class: 'wd02' %></td>
+                  <td><%= f.number_field :roadtemp, step: "0.01" ,class: 'wd02' %></td>
+                </tr>
+              </table>
+            </section>
+            <section>
+              <h2 class="heading02 ic ic-flag">laptime</h2>
+              <table class="time">
+                <tr>
+                  <th>sector1</th>
+                  <th>sector2</th>
+                  <th>sector3</th>
+                  <th>total</th>
+                </tr>
+                  <%= f.fields_for :laptimes do |laptime_f| %>
+                  <tr>
+                    <td><%= laptime_f.number_field :sec1, step: "0.001",class: 'sector sec1' %></td>
+                    <td><%= laptime_f.number_field :sec2, step: "0.001",class: 'sector sec2' %></td>
+                    <td><%= laptime_f.number_field :sec3, step: "0.001",class: 'sector sec3' %></td>
+                    <td><%= laptime_f.number_field :total, step: "0.001",class: 'total' %></td>
+                  </tr>
+                <% end %>
+              </table>
+            </section>
+            <section>
+              <h2 class="heading02 ic ic-setting-w">setting</h2>
+              <%= f.fields_for :settings do |setting_f| %>
+              <dl>
+                <dt>tire</dt>
+                <dd><%= f.text_field :tirename ,class: '' %></dd>
+              </dl>
 
-<%= hidden_field_tag :event_id, @event.id %>
-<%= hidden_field_tag :circuit_id, @circuit.id %>
-<%= f.submit '登録する', class: '' %>
-<% end %>
-<%= link_to '戻る', :back %>
+              <table class="press">
+                <tr>
+                  <th></th>
+                  <th colspan="2">front</th>
+                  <th colspan="2">rear</th>
+                </tr>
+                <tr>
+                  <th>tire width</th>
+                  <td colspan="2"><%= setting_f.number_field :ftirewidth ,class: 'wd02' %></td>
+                  <td colspan="2"><%= setting_f.number_field :rtirewidth ,class: 'wd02' %></td>
+                </tr>
+                <tr>
+                  <th>damping</th>
+                  <td colspan="2"><%= setting_f.number_field :fdecay ,class: 'wd02' %></td>
+                  <td colspan="2"><%= setting_f.number_field :rdecay ,class: 'wd02' %></td>
+                </tr>
+                <tr>
+                  <th></th>
+                  <th>right</th>
+                  <th>left</th>
+                  <th>right</th>
+                  <th>left</th>
+                </tr>
+                <tr>
+                  <th>air pressure</th>
+                  <td><%= setting_f.number_field :frpress, step: "0.01" ,class: 'wd02' %></td>
+                  <td><%= setting_f.number_field :flpress, step: "0.01" ,class: 'wd02' %></td>
+                  <td><%= setting_f.number_field :rrpress, step: "0.01" ,class: 'wd02' %></td>
+                  <td><%= setting_f.number_field :rlpress, step: "0.01" ,class: 'wd02' %></td>
+                </tr>
+                <tr>
+                  <th>remarks</th>
+                  <td colspan="4"><%= setting_f.text_area :remarks ,class: '' %></td>
+                </tr>
+              </table>
+              <% end %>
+              <%= hidden_field_tag :event_id, @event.id %>
+              <%= hidden_field_tag :circuit_id, @circuit.id %>
+            </section>
+            <div class="btn-wrap center">
+              <div class="btn"><%= f.submit 'add data', class: '' %></div>
+              <div class="btn"><%= link_to 'back', :back %></div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

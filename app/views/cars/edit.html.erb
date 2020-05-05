@@ -1,14 +1,42 @@
-<h1><%= @car.name %> の編集ページ</h1>
+<% @page_class = 'car' %>
 
-<%= form_for(@car) do |f| %>
-  <%= f.label :name, '車種名' %>
-  <%= f.text_field :name %>
-  <% if @car.img? %>
-  <p><%= image_tag @car.img.url %></p>
-  <% end %>
-  <%= f.label "画像を変更" %><br><%= f.file_field :img %>
-  <%= f.submit '投稿' %>
-<% end %>
-
-<%= link_to '一覧に戻る', cars_path %>
-<%= link_to 'この車種を削除する', @car, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
+<div class="cts">
+  <section>
+    <%= form_for(@car) do |f| %>
+      <div class="profile bg-carbon">
+        <div class="bg-screw">
+          <div class="col2">
+            <div class="cell">
+              <div class="img-area" id="img">
+                <% if @car.img? %>
+                  <%= image_tag @car.img.url %>
+                <% else %>
+                  <%= image_tag('common/noimage.jpg') %>
+                <% end %>
+              </div>
+              <div class="center">
+                <div class="btn">
+                  <%= f.label :img, class: "form-img" do %>
+                    <span>change image</span>
+                    <%= f.file_field :img  %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <div class="cell edit">
+              <section>
+                <h2 class="heading01 ic ic-car">car name</h2>
+                <p><%= f.text_field :name %></p>
+              </section>
+            </div>
+          </div>
+          <div class="btn-wrap">
+            <div class="btn"><%= f.submit 'change' %></div>
+            <div class="btn"><%= link_to 'back', cars_path %></div>
+            <div><%= link_to 'delete', @car, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </section>
+</div>

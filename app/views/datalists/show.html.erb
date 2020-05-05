@@ -1,19 +1,62 @@
-
-<p>開催日:<%= @event.day %></p>
-<p>サーキット:<%= @circuit.name %></p>
-<p>ドライバー:<%= @datalist.user.name %></p>
-<% unless @besttimes.blank? %>
-<p>ベストタイム：<%= @besttimes.min %></p>
-<% end %>
-
-<% @heats.each do |heat| %>
-<%= link_to heat.number, heat %>
-<%= heat.car.name %>
-<%= heat.laptimes.minimum(:total) %>
-<% end %>
-
-<% if current_user  == @datalist.user %>
-<%= link_to 'ヒートの追加', new_heat_path(circuit_id: @circuit.id, event_id: @event.id) %>
-<% end %>
-
-<%= link_to '戻る', event_path(@event, circuit_id: @circuit.id) %>
+<div class="cts">
+  <section>
+    <div class="profile bg-carbon">
+      <div class="bg-screw">
+        <h2 class="heading01 ic ic-circuit"><%= @circuit.name %></h2>
+        <div class="col2">
+          <div class="cell">
+            <div class="img-area">
+              <% if @circuit.img? %>
+                <%= image_tag @circuit.img.url %>
+              <% else %>
+                <%= image_tag('common/noimage.jpg') %>
+              <% end %>
+            </div>
+          </div>
+          <div class="cell">
+            <section>
+              <h2 class="heading02 ic ic-calendar">attack day</h2>
+              <p><%= @event.day %></p>
+            </section>
+            <section>
+              <h2 class="heading02 ic ic-h">driver</h2>
+              <p><%= link_to @datalist.user.name, user_path(@datalist.user)  %></p>
+            </section>
+            <section class="besttime">
+              <h2 class="heading02 ic ic-flag">best time</h2>
+              <% unless @besttimes.blank? %>
+                <ul>
+                  <% @bestheats.each do |heat| %>
+                    <%= link_to(heat) do %>
+                      <li>
+                        <p class="time"><%= @besttime %></p>
+                      </li>
+                    <% end %>
+                  <% end %>
+                </ul>
+              <% end %>
+            </section>
+            <section>
+              <h2 class="heading02 ic ic-h">heat list</h2>
+              <ul class="list-dot">
+                <% @heats.each do |heat| %>
+                <li>
+                  <%= link_to (heat) do %>
+                    <%= heat.number %>h: <%= heat.laptimes.minimum(:total) %>
+                  <% end %>
+                </li>
+                <% end %>
+              </ul>
+            </section>
+          </div>
+        </div>
+        <div class="btn-wrap">
+          <% if current_user  == @datalist.user %>
+            <div class="btn"><%= link_to 'add heat', new_heat_path(circuit_id: @circuit.id, event_id: @event.id) %></div>
+          <% end %>
+          <div class="btn"><%= link_to 'attack day top', event_path(@event, circuit_id: @circuit.id) %></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

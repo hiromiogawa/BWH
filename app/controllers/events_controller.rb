@@ -1,11 +1,14 @@
 class EventsController < ApplicationController
+  before_action :require_user_logged_in, only: [:edit, :update, :destroy]
 
   def show
     @event = Event.find(params[:id])
     @circuit = Circuit.find(params[:circuit_id])
     @datalists = @event.datalists.all
-    if current_user.dataregister?(@event)
-      @datalist = @event.datalists.build
+    if logged_in?
+      if current_user.dataregister?(@event)
+        @datalist = @event.datalists.build
+      end
     end
 
     # ベストタイム
@@ -18,7 +21,7 @@ class EventsController < ApplicationController
       end
     unless @besttimes.blank?
       @besttime = @besttimes.min.min
-      @heats = Heat.includes(:laptimes).where("laptimes.total": @besttime).all
+      @heats = Heat.includes(:laptimes, :datalist).where("laptimes.total": @besttime).where("datalists.id": @datalists).all
     end
   end
 

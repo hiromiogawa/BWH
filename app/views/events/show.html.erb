@@ -1,27 +1,71 @@
-<h1><%= @event.day %><%= @circuit.name %></h1>
-<% unless @besttimes.blank? %>
-<p>ベストタイム：
-  <% @heats.each do |heat| %>
-    <%= link_to(heat) do %>
-      <%= @besttime %>
-      <%= heat.datalist.user.name %>
-    <% end %>
-  <% end %>
-</p>
-<% end %>
-
-<% @datalists.each do |datalist| %>
-<%= link_to datalist.user.name, datalist_path(datalist, circuit_id: @circuit.id, event_id: @event.id)  %>
-<% end %>
-
-<% if current_user.dataregister?(@event) %>
-<% else %>
-<%= form_for(current_user.datalists.build) do |f| %>
-<%= hidden_field_tag :event_id, @event.id %>
-<%= hidden_field_tag :circuit_id, @circuit.id %>
-<%= f.submit 'データを登録する', class: '' %>
-<% end %>
-<% end %>
-
-<%= link_to '戻る', @circuit %>
-<%= link_to 'この開催日を削除する', @event, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }  %>
+<div class="cts">
+  <section>
+    <div class="profile bg-carbon">
+      <div class="bg-screw">
+        <h2 class="heading01 ic ic-circuit"><%= @circuit.name %></h2>
+        <div class="col2">
+          <div class="cell">
+            <div class="img-area">
+              <% if @circuit.img? %>
+                <%= image_tag @circuit.img.url %>
+              <% else %>
+                <%= image_tag('common/noimage.jpg') %>
+              <% end %>
+            </div>
+          </div>
+          <div class="cell">
+            <section>
+              <h2 class="heading02 ic ic-calendar">attack day</h2>
+              <p class="day"><%= @event.day %></p>
+            </section>
+            <section class="besttime">
+              <h2 class="heading02 ic ic-flag">best time</h2>
+              <% unless @besttimes.blank? %>
+                <ul class="list-dot">
+                  <% @heats.each do |heat| %>
+                    <li>
+                      <%= link_to(heat) do %>
+                        <p class="username"><%= heat.datalist.user.name %></p>
+                        <p class="time"><%= @besttime %></p>
+                      <% end %>
+                    </li>
+                  <% end %>
+                </ul>
+              <% else %>
+                <p>ラップタイムが登録されていません</p>
+              <% end %>
+            </section>
+            <section>
+              <h2 class="heading02 ic ic-h">join user</h2>
+              <ul class="list-dot">
+                <% @datalists.each do |datalist| %>
+                  <li><%= link_to datalist.user.name, datalist_path(datalist, circuit_id: @circuit.id, event_id: @event.id)  %></li>
+                <% end %>
+              </ul>
+            </section>
+            <% if logged_in? %>
+              <% if current_user.dataregister?(@event) %>
+              <% else %>
+                <div class="btn">
+                  <%= form_for(current_user.datalists.build) do |f| %>
+                    <%= hidden_field_tag :event_id, @event.id %>
+                    <%= hidden_field_tag :circuit_id, @circuit.id %>
+                    <%= f.submit 'join', class: '' %>
+                  <% end %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="btn-wrap">
+          <div class="btn"><%= link_to 'circuit top', @circuit %></div>
+          <% if logged_in? %>
+            <% if current_user.admin?  %>
+              <div class="btn btn-red"><%= link_to 'delete', @event, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

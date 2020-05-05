@@ -1,0 +1,72 @@
+<div class="cts">
+  <section class="user_data">
+    <div class="profile bg-carbon">
+      <div class="bg-screw">
+        <div class="inner">
+          <div class="thumbnail">
+            <div id="img">
+              <% if @user.img? %>
+                <%= image_tag @user.img.url %>
+              <% else %>
+                <%= image_tag('common/noimage.jpg') %>
+              <% end %>
+            </div>
+          </div>
+          <div class="statsu">
+            <section>
+              <h2 class="heading01 ic ic-h">user name</h2>
+              <p class="username"><%= @user.name %></p>
+              <div class="btn-wrap left">
+                <% if current_user  == @user %>
+                  <div class="btn"><%= link_to 'edit', edit_user_path(@user) %></div>
+                  <div class="btn btn-red"><%= link_to '退会', user_path(current_user), method: :delete , data: { confirm: '本当に退会しますか？' } %></div>
+                <% end %>
+              </div>
+            </section>
+            <section>
+              <h2 class="heading01 ic ic-car">my cars</h2>
+              <% if @have_cars.present? %>
+                <ul class="list-dot">
+                  <% @have_cars.each do |car| %>
+                    <li>
+                      <%= link_to car.name, (car) %>
+                    </li>
+                  <% end %>
+                </ul>
+              <% else %>
+                <p class="note">マイカー登録されていません</p>
+              <% end %>
+              <% if current_user  == @user %>
+                <div class="btn"><%= link_to 'add mycar', cars_path %></div>
+              <% end %>
+            </section>
+          </div>
+        </div>
+        <section class="user-circuit">
+          <h2 class="heading01 ic ic-circuit">my circuits</h2>
+          <% if current_user  == @user %>
+            <div class="btn"><%= link_to 'add mycircuit', circuits_path %></div>
+          <% end %>
+          <% if @partake_circits.present? %>
+            <ul class="col3">
+              <% @partake_circits.each do |circuit| %>
+                  <li class="bg-aluminum">
+                    <%= link_to (userdata_path(user_id: @user.id, circuit_id: circuit.id)), class:'bg-screw' do %>
+                    <div class="img-area match-height">
+                      <% if circuit.img? %>
+                        <%= image_tag circuit.img.url %>
+                        <% else %>
+                          <%= image_tag('common/noimage.jpg') %>
+                      <% end %>
+                    </div>
+                    <p><%= circuit.name %></p>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p class="note">マイサーキットが登録されていません</p>
+          <% end %>
+        </section>
+      </div>
+    </div>

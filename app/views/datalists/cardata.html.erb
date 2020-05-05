@@ -1,0 +1,49 @@
+<div class="cts">
+  <section>
+    <div class="profile bg-carbon">
+      <div class="bg-screw">
+        <h2 class="heading01 ic ic-circuit"><%= @circuit.name %></h2>
+        <div class="col2">
+          <div class="cell">
+            <div class="img-area">
+              <% if @car.img? %>
+                <%= image_tag @car.img.url %>
+              <% else %>
+                <%= image_tag('common/noimage.jpg') %>
+              <% end %>
+            </div>
+          </div>
+          <div class="cell">
+            <section>
+              <h2 class="heading02 ic ic-car">carname</h2>
+              <p><%= link_to @car.name, car_path(@car) %></p>
+            </section>
+            <section>
+              <h2 class="heading02 ic ic-flag">ranking</h2>
+              <div class="ranking">
+                <div class="podium">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <ol>
+                    <% @times.each do |time| %>
+                        <li>
+                          <%= link_to (time.heat) do %>
+                            <p class="name"><%= time.heat.user.name %></p>
+                            <p class="time"><%= time.total %></p>
+                          <% end %>
+                        </li>
+                    <% end %>
+                  </ol>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+        <div class="btn-wrap">
+
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,13 +1,32 @@
-<h1>サーキット一覧</h1>
+<% @page_class = 'circuit' %>
 
-<ul>
-  <% @circuits.each do |circuit| %>
-    <li>
-      <% if circuit.img? %>
-        <p><%= image_tag circuit.img.url %></p>
-      <% end %>
-      <%= link_to circuit.name, circuit %>
-    </li>
-  <% end %>
-</ul>
-<%= link_to 'サーキットの追加', new_circuit_path %>
+<div class="cts">
+  <section>
+    <div class="profile bg-carbon">
+      <div class="bg-screw">
+        <h2 class="heading01 ic ic-circuit">circuit list</h2>
+          <ul class="col3">
+            <% @circuits.each do |circuit| %>
+              <li class="bg-aluminum">
+                <%= link_to (circuit), class:'bg-screw' do %>
+                  <div class="img-area match-height">
+                    <% if circuit.img? %>
+                      <%= image_tag circuit.img.url %>
+                    <% else %>
+                      <%= image_tag('common/noimage.jpg') %>
+                    <% end %>
+                  </div>
+                  <p><%= circuit.name %></p>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+          <% if logged_in? %>
+            <% if current_user.admin?  %>
+              <div class="btn"><%= link_to 'add newcircuit', new_circuit_path %></div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </section>
+  </div>

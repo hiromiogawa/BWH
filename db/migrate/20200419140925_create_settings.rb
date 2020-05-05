@@ -7,10 +7,8 @@ class CreateSettings < ActiveRecord::Migration[6.0]
       t.float :frpress
       t.float :rlpress
       t.float :rrpress
-      t.integer :fldecay
-      t.integer :frdecay
-      t.integer :rldecay
-      t.integer :rrdecay
+      t.integer :fdecay
+      t.integer :rdecay
       t.string :remarks
 
       t.references :heat, null: false, foreign_key: true

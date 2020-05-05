@@ -1,15 +1,56 @@
-<%= @circuit.name %>
-<%= @user.name %>
-<% unless @besttimes.blank? %>
-<p>ベストタイム：
-  <% @heats.each do |heat| %>
-    <%= link_to(heat) do %>
-      <%= @besttime %>
-    <% end %>
-  <% end %>
-</p>
-<% end %>
-<% @datalists.each do |datalist| %>
-<%= link_to datalist.event.day, datalist_path(datalist, circuit_id: @circuit.id, event_id: datalist.event.id)  %>
-<% end %>
-<%= link_to '戻る', :back %>
+<div class="cts">
+  <section>
+    <div class="profile bg-carbon">
+      <div class="bg-screw">
+        <h2 class="heading01 ic ic-circuit"><%= @circuit.name %></h2>
+        <div class="col2">
+          <div class="cell">
+            <div class="img-area">
+              <% if @circuit.img? %>
+                <%= image_tag @circuit.img.url %>
+              <% else %>
+                <%= image_tag('common/noimage.jpg') %>
+              <% end %>
+            </div>
+          </div>
+          <div class="cell">
+            <section>
+              <h2 class="heading02 ic ic-h">dirver</h2>
+              <p><%= @user.name %></p>
+            </section>
+            <section class="besttime">
+              <h2 class="heading02 ic ic-flag">best time</h2>
+              <% unless @besttimes.blank? %>
+                <ul class="list-dot">
+                  <% @bestheats.each do |heat| %>
+                    <li>
+                      <%= link_to(heat) do %>
+                        <p class="time"><%= @besttime %></p>
+                      <% end %>
+                    </li>
+                  <% end %>
+                </ul>
+              <% end %>
+            </section>
+            <section>
+              <h2 class="heading02 ic ic-h">data list</h2>
+              <ul class="list-dot">
+                <% @datalists.each do |datalist| %>
+                  <li>
+                    <%= link_to (datalist) do %>
+                      <%= link_to datalist.event.day, datalist_path(datalist, circuit_id: @circuit.id, event_id: datalist.event.id)  %>
+                    <% end %>
+                  </li>
+                  <% end %>
+              </ul>
+              <%= paginate @datalists %>
+            </section>
+          </div>
+        </div>
+        <div class="btn-wrap">
+          <div class="btn"><%= link_to 'user page', @user %></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

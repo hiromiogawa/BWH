@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_19_143820) do
+ActiveRecord::Schema.define(version: 2020_04_19_140925) do
 
   create_table "cars", force: :cascade do |t|
     t.string "name"
@@ -45,14 +45,21 @@ ActiveRecord::Schema.define(version: 2020_04_19_143820) do
 
   create_table "heats", force: :cascade do |t|
     t.integer "number"
+    t.string "tirename"
+    t.string "weather"
+    t.float "temp"
+    t.string "roadcondition"
+    t.float "roadtemp"
     t.integer "datalist_id", null: false
     t.integer "car_id", null: false
-    t.integer "tire_id", null: false
+    t.integer "circuit_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["car_id"], name: "index_heats_on_car_id"
+    t.index ["circuit_id"], name: "index_heats_on_circuit_id"
     t.index ["datalist_id"], name: "index_heats_on_datalist_id"
-    t.index ["tire_id"], name: "index_heats_on_tire_id"
+    t.index ["user_id"], name: "index_heats_on_user_id"
   end
 
   create_table "joins", force: :cascade do |t|
@@ -95,10 +102,8 @@ ActiveRecord::Schema.define(version: 2020_04_19_143820) do
     t.float "frpress"
     t.float "rlpress"
     t.float "rrpress"
-    t.integer "fldecay"
-    t.integer "frdecay"
-    t.integer "rldecay"
-    t.integer "rrdecay"
+    t.integer "fdecay"
+    t.integer "rdecay"
     t.string "remarks"
     t.integer "heat_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -106,16 +111,12 @@ ActiveRecord::Schema.define(version: 2020_04_19_143820) do
     t.index ["heat_id"], name: "index_settings_on_heat_id"
   end
 
-  create_table "tires", force: :cascade do |t|
-    t.string "tirename"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "name"
+    t.string "img"
     t.string "email"
     t.string "password_digest"
+    t.boolean "admin", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -124,8 +125,9 @@ ActiveRecord::Schema.define(version: 2020_04_19_143820) do
   add_foreign_key "datalists", "users"
   add_foreign_key "events", "circuits"
   add_foreign_key "heats", "cars"
+  add_foreign_key "heats", "circuits"
   add_foreign_key "heats", "datalists"
-  add_foreign_key "heats", "tires"
+  add_foreign_key "heats", "users"
   add_foreign_key "joins", "circuits"
   add_foreign_key "joins", "users"
   add_foreign_key "laptimes", "heats"

@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   resources :datalists, only: [:show, :create, :destroy]
   get 'userdata', to: 'datalists#userdata'
+  get 'cardata', to: 'datalists#cardata'
 
   resources :heats
 

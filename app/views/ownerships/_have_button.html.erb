@@ -1,13 +1,17 @@
   <% if current_user.have?(car) %>
-    <%= form_tag( ownership_path(car.id), method: :delete) do  %>
-      <%= hidden_field_tag :car_id, car.id %>
-      <%= hidden_field_tag :type, 'Have' %>
-      <%= submit_tag 'マイカーから削除', class: '' %>
-    <% end %>
+    <div class="btn btn-red">
+      <%= form_tag( ownership_path(car.id), method: :delete) do  %>
+        <%= hidden_field_tag :car_id, car.id %>
+        <%= hidden_field_tag :type, 'Have' %>
+        <%= submit_tag 'delete mycar', data: { confirm: 'マイカーから削除しますか？' }, class: '' %>
+      <% end %>
+    </div>
   <% else %>
-    <%= form_for(current_user.ownerships.build) do |f| %>
-      <%= hidden_field_tag :car_id, car.id %>
-      <%= hidden_field_tag :type, 'Have' %>
-      <%= f.submit 'マイカーに追加', class: '' %>
-    <% end %>
+    <div class="btn">
+      <%= form_for(current_user.ownerships.build) do |f| %>
+        <%= hidden_field_tag :car_id, car.id %>
+        <%= hidden_field_tag :type, 'Have' %>
+        <%= f.submit 'add mycar', class: '' %>
+      <% end %>
+    </div>
   <% end %>

@@ -3,7 +3,7 @@ class CreateCircuits < ActiveRecord::Migration[6.0]
     create_table :circuits do |t|
       t.string :name
       t.string :img
-
+      t.string :img2
       t.timestamps
     end
   end

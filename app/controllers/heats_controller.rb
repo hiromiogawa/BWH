@@ -1,4 +1,5 @@
 class HeatsController < ApplicationController
+  before_action :require_user_logged_in, only: [:edit, :update, :destroy]
 
   def show
     @heat = Heat.find(params[:id])
@@ -7,7 +8,7 @@ class HeatsController < ApplicationController
     @datalist = @heat.datalist
     @event = @datalist.event
     @circuit = @event.circuit
-    @user = @datalist.user
+    @user = @heat.user
   end
 
   def new
@@ -17,9 +18,8 @@ class HeatsController < ApplicationController
     @circuit = Circuit.find(params[:circuit_id])
     @datalist = @event.datalists.where(user_id: @user.id).where(event_id: @event.id).first
     @heat = @datalist.heats.build
-    20.times{@heat.laptimes.build}
+    10.times{@heat.laptimes.build}
     @heat.settings.build
-    @tires = Tire.all
   end
 
   def create
@@ -73,6 +73,6 @@ class HeatsController < ApplicationController
   private
 
   def heat_params
-    params.require(:heat).permit(:car_id, :tire_id, :number, laptimes_attributes: [:id, :sec1, :sec2, :sec3, :total ], settings_attributes: [:id, :ftirewidth, :rtirewidth, :flpress, :frpress, :rlpress, :rrpress, :fldecay, :frdecay, :rldecay, :rrdecay, :remarks ])
+    params.require(:heat).permit(:car_id, :circuit_id, :user_id, :tirename, :number, :weather, :temp, :roadcondition, :roadtemp,  laptimes_attributes: [:id, :sec1, :sec2, :sec3, :total ], settings_attributes: [:id, :ftirewidth, :rtirewidth, :flpress, :frpress, :rlpress, :rrpress, :fdecay, :rdecay, :remarks ])
   end
 end

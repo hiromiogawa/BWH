@@ -1,15 +1,18 @@
-<header>
+<header class="bg-carbon">
+  <h1><a href="/"><%= image_tag('common/header_logo01.png') %></a></h1>
   <nav>
     <ul>
       <% if logged_in? %>
-        <li><%= link_to 'マイページ', user_path(current_user) %></li>
-        <li><%= link_to 'ログアウト', logout_path, method: :delete %></li>
-        <li><%= link_to 'サーキット', circuits_path %></li>
-        <li><%= link_to '車種一覧', cars_path %></li>
-        <li><%= link_to 'タイヤ一覧', tires_path %></li>
+        <li><%= link_to 'Mypage', root_url %></li>
+      <% end %>
+        <li><%= link_to 'Car', cars_path %></li>
+        <li><%= link_to 'Circuit', circuits_path %></li>
+        <li><%= link_to 'User', users_path %></li>
+      <% if logged_in? %>
+        <li><%= link_to 'Logout', logout_path, method: :delete, class: "font-c-red" %></li>
       <% else %>
-        <li><%= link_to '新規登録', signup_path %></li>
-        <li><%= link_to 'ログイン', login_path %></li>
+        <li><%= link_to 'signup', signup_path %></li>
+        <li><%= link_to 'login', login_path %></li>
       <% end %>
     </ul>
 

@@ -1,0 +1,79 @@
+@import "_mixin";
+@import "variable";
+
+.heat {
+  .tire-area {
+    margin-bottom: 1.6rem;
+    padding-left: 1.6rem;
+
+    .ic::before {
+      width: 12px;
+      height: 12px;
+      left: -1.6rem;
+      top: .5em;
+    }
+  }
+
+  .laptime {
+
+    table {
+
+      th,td {
+        width: 25%;
+        padding: .4rem .8rem .4rem 0;
+        text-align: center;
+      }
+    }
+  }
+
+  .bg-aluminum {
+    margin-top: $margin01;
+  }
+
+  .setting {
+
+    .tb01 {
+
+      td {
+
+        span {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .remarks {
+      white-space: pre-wrap;
+    }
+  }
+
+  .edit {
+    max-width: 800px;
+    margin: 0 auto;
+
+    section {
+
+      &:not(:last-of-type) {
+        margin-bottom: $margin01;
+      }
+    }
+
+
+    table {
+
+      th,td {
+        padding: .4rem;
+      }
+
+      th {
+        text-align: left;
+        padding-top: .8rem;
+        vertical-align: top;
+      }
+    }
+    
+    dd {
+      width: 320px;
+    }
+  }
+}

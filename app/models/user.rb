@@ -6,6 +6,8 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   has_secure_password
 
+  mount_uploader :img, ImageUploader
+
   has_many :ownerships
   has_many :cars, through: :ownerships
   has_many :haves, class_name: 'Have'
@@ -16,6 +18,7 @@ class User < ApplicationRecord
   has_many :partake_circits, through: :partakes, source: :circuit
   has_many :datalists, dependent: :destroy
   has_many :events, through: :datalists
+  has_many :heats, dependent: :destroy
 
 
   def have(car)
