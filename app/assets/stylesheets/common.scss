@@ -24,7 +24,7 @@
 /* 背景
 -----------------------------------*/
 .bg-carbon {
-  background-image: image-url(/assets/common/com_bg01.jpg);
+  background-image: image-url('common/com_bg01.jpg');
 
   > .bg-screw {
     background-size: 20px;
@@ -34,7 +34,7 @@
 }
 
 .bg-aluminum {
-  background-image: url(/assets/common/com_bg02.jpg);
+  background-image: url('common/com_bg02.jpg');
   background-size: 100% 100%;
   color: #000;
 
@@ -47,7 +47,7 @@
 }
 
 .bg-screw {
-  background-image: image-url(/assets/common/com_ic01.png), url(/assets/common/com_ic01.png), url(/assets/common/com_ic01.png) ,url(/assets/common/com_ic01.png);
+  background-image: image-url('common/com_ic01.png'), url('common/com_ic01.png'), url('common/com_ic01.png') ,url('common/com_ic01.png');
   background-repeat: no-repeat;
 }
 
@@ -123,47 +123,47 @@
 }
 
 .ic-h::before {
-  background-image: image-url(/assets/common/com_ic02.png)
+  background-image: image-url('common/com_ic02.png')
 }
 
 .ic-car::before {
-  background-image: image-url(/assets/common/com_ic03.png)
+  background-image: image-url('common/com_ic03.png')
 }
 
 .ic-circuit::before {
-  background-image: image-url(/assets/common/com_ic04.png)
+  background-image: image-url('common/com_ic04.png')
 }
 
 .ic-flag::before {
-  background-image: image-url(/assets/common/com_ic05.png)
+  background-image: image-url('common/com_ic05.png')
 }
 
 .ic-calendar::before {
-  background-image: image-url(/assets/common/com_ic06.png)
+  background-image: image-url('common/com_ic06.png')
 }
 
 .ic-cond::before {
-  background-image: image-url(/assets/common/com_ic07.png)
+  background-image: image-url('common/com_ic07.png')
 }
 
 .ic-setting::before {
-  background-image: url(/assets/common/com_ic08.png)
+  background-image: url('common/com_ic08.png')
 }
 
 .ic-setting-w::before {
-  background-image: image-url(/assets/common/com_ic08_w.png)
+  background-image: image-url('common/com_ic08_w.png')
 }
 
 .ic-tire::before {
-  background-image: image-url(/assets/common/com_ic09.png)
+  background-image: image-url('common/com_ic09.png')
 }
 
 .ic-mail::before {
-  background-image: image-url(/assets/common/com_ic10.png)
+  background-image: image-url('common/com_ic10.png')
 }
 
 .ic-key::before {
-  background-image: image-url(/assets/common/com_ic11.png)
+  background-image: image-url('common/com_ic11.png')
 }
 
 /* リスト
@@ -180,7 +180,7 @@
     left: 0;
     top: .5em;
     transform: translateY(-50%);
-    background-image: url(/assets/common/list_ic01.png);
+    background-image: url('common/list_ic01.png');
     background-repeat: no-repeat;
     background-size: contain;
   }
@@ -497,7 +497,7 @@ dt {
 .ranking {
   position: relative;
   background-color: #008000;
-  background-image: url(/assets/common/ranking_bg01.png);
+  background-image: url('common/ranking_bg01.png');
   background-size: 192.5px auto;
 
   &::before {
@@ -531,17 +531,17 @@ dt {
 
       &:nth-of-type(1) {
         height: 120px;
-        background-image: image-url(/assets/common/ranking_ic02.png);
+        background-image: image-url('common/ranking_ic02.png');
       }
 
       &:nth-of-type(2) {
         height: 180px;
-        background-image: image-url(/assets/common/ranking_ic01.png);
+        background-image: image-url('common/ranking_ic01.png');
       }
 
       &:nth-of-type(3) {
         height: 60px;
-        background-image: image-url(/assets/common/ranking_ic03.png);
+        background-image: image-url('common/ranking_ic03.png');
       }
     }
   }
