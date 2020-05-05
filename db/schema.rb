@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2020_04_19_140925) do
   create_table "circuits", force: :cascade do |t|
     t.string "name"
     t.string "img"
+    t.string "img2"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
