@@ -24,16 +24,16 @@
             </section>
             <section class="besttime">
               <h2 class="heading02 ic ic-flag">best time</h2>
-              <% unless @besttimes.blank? %>
-                <ul>
-                  <% @bestheats.each do |heat| %>
-                    <%= link_to(heat) do %>
-                      <li>
-                        <p class="time"><%= @besttime %></p>
-                      </li>
+              <% unless @besttime.blank? %>
+                <ul class="list-dot">
+                  <li>
+                    <%= link_to(@besttime.heat) do %>
+                    <p class="time"><%= @besttime.total %></p>
                     <% end %>
-                  <% end %>
+                  </li>
                 </ul>
+              <% else %>
+                <p>登録されたデータはありません</p>
               <% end %>
             </section>
             <section>
@@ -52,9 +52,9 @@
         </div>
         <div class="btn-wrap">
           <% if current_user  == @datalist.user %>
-            <div class="btn"><%= link_to 'add heat', new_heat_path(circuit_id: @circuit.id, event_id: @event.id) %></div>
+            <div class="btn"><%= link_to 'heatを追加する', new_heat_path(circuit_id: @circuit.id, event_id: @event.id) %></div>
           <% end %>
-          <div class="btn"><%= link_to 'attack day top', event_path(@event, circuit_id: @circuit.id) %></div>
+          <div class="btn"><%= link_to '開催日トップへ戻る', event_path(@event, circuit_id: @circuit.id) %></div>
         </div>
       </div>
     </div>

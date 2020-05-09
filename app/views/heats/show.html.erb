@@ -29,26 +29,20 @@
               <ul class="list-dot">
                 <li>
                   <dl>
-                    <dt class="font02">weather:</dt>
+                    <dt class="font02">天気</dt>
                     <dd><%= @heat.weather %></dd>
                   </dl>
                 </li>
                 <li>
                   <dl>
-                    <dt class="font02">temperature</dt>
+                    <dt class="font02">気温</dt>
                     <dd><%= @heat.temp %>℃</dd>
                   </dl>
                 </li>
                 <li>
                   <dl>
-                    <dt class="font02">road condition</dt>
+                    <dt class="font02">路面状態</dt>
                     <dd><%= @heat.roadcondition %></dd>
-                  </dl>
-                </li>
-                <li>
-                  <dl>
-                    <dt class="font02">road temperature</dt>
-                    <dd><%= @heat.roadtemp %>℃</dd>
                   </dl>
                 </li>
               </ul>
@@ -80,7 +74,7 @@
                   <h2 class="heading02 ic ic-setting">setting</h2>
                   <% @settings.each do |setting| %>
                     <dl class="tire-area">
-                      <dt class="font02 ic ic-tire">tire</dt>
+                      <dt class="font02 ic ic-tire">タイヤ名</dt>
                       <dd><%= @heat.tirename %></dd>
                     </dl>
 
@@ -91,12 +85,12 @@
                         <th class="font02" colspan="2">rear</th>
                       </tr>
                       <tr>
-                        <th class="font02">tire width</th>
+                        <th class="font02">タイヤ幅</th>
                         <td colspan="2"><%= setting.ftirewidth %></td>
                         <td colspan="2"><%= setting.rtirewidth %></td>
                       </tr>
                       <tr>
-                        <th class="font02">damping</th>
+                        <th class="font02">減衰力</th>
                         <td colspan="2"><%= setting.fdecay %></td>
                         <td colspan="2"><%= setting.rdecay %></td>
                       </tr>
@@ -108,14 +102,14 @@
                         <th class="font02">left</th>
                       </tr>
                       <tr>
-                        <th class="font02">air pressure</th>
+                        <th class="font02">空気圧</th>
                         <td><%= setting.frpress %></td>
                         <td><%= setting.flpress %></td>
                         <td><%= setting.rrpress %></td>
                         <td><%= setting.rlpress %></td>
                       </tr>
                       <tr>
-                        <th class="font02">remarks</th>
+                        <th class="font02">備考</th>
                         <td class="left remarks" colspan="4"><%= setting.remarks %></td>
                       </tr>
                     </table>
@@ -127,10 +121,10 @@
         </div>
         <div class="btn-wrap">
           <% if current_user  == @datalist.user %>
-            <div class="btn"><%= link_to 'edit', edit_heat_path(@heat) %></div>
-            <div class="btn btn-red"><%= link_to 'delete', @heat, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></div>
+            <div class="btn"><%= link_to '変更する', edit_heat_path(@heat) %></div>
+            <div class="btn btn-red"><%= link_to '削除する', @heat, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></div>
           <% end %>
-          <div class="btn"><%= link_to 'heat list', datalist_path(@datalist, circuit_id: @circuit.id, event_id: @event.id) %></div>
+          <div class="btn"><%= link_to 'heat一覧へ', datalist_path(@datalist, circuit_id: @circuit.id, event_id: @event.id) %></div>
         </div>
       </div>
     </div>

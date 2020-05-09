@@ -255,7 +255,7 @@
     tr {
 
       th {
-        font-weight: normal;
+        font-weight: bold;
         padding: .4rem;
 
         &:first-of-type {
@@ -286,6 +286,7 @@ table {
 
 dt {
   font-family: $webfont02;
+  font-weight: bold;
 }
 
 

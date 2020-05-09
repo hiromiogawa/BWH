@@ -18,23 +18,7 @@
               <h2 class="heading02 ic ic-calendar">attack day</h2>
               <p class="day"><%= @event.day %></p>
             </section>
-            <section class="besttime">
-              <h2 class="heading02 ic ic-flag">best time</h2>
-              <% unless @besttimes.blank? %>
-                <ul class="list-dot">
-                  <% @heats.each do |heat| %>
-                    <li>
-                      <%= link_to(heat) do %>
-                        <p class="username"><%= heat.datalist.user.name %></p>
-                        <p class="time"><%= @besttime %></p>
-                      <% end %>
-                    </li>
-                  <% end %>
-                </ul>
-              <% else %>
-                <p>ラップタイムが登録されていません</p>
-              <% end %>
-            </section>
+
             <section>
               <h2 class="heading02 ic ic-h">join user</h2>
               <ul class="list-dot">
@@ -50,7 +34,7 @@
                   <%= form_for(current_user.datalists.build) do |f| %>
                     <%= hidden_field_tag :event_id, @event.id %>
                     <%= hidden_field_tag :circuit_id, @circuit.id %>
-                    <%= f.submit 'join', class: '' %>
+                    <%= f.submit '参加する', class: '' %>
                   <% end %>
                 </div>
               <% end %>
@@ -58,10 +42,10 @@
           </div>
         </div>
         <div class="btn-wrap">
-          <div class="btn"><%= link_to 'circuit top', @circuit %></div>
+          <div class="btn"><%= link_to 'サーキットトップへ', @circuit %></div>
           <% if logged_in? %>
             <% if current_user.admin?  %>
-              <div class="btn btn-red"><%= link_to 'delete', @event, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></div>
+              <div class="btn btn-red"><%= link_to '削除する', @event, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></div>
             <% end %>
           <% end %>
         </div>

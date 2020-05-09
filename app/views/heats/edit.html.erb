@@ -18,7 +18,7 @@
             <p><%= link_to @circuit.name , circuit_path(@circuit) %></p>
           </section>
           <section>
-            <h2 class="heading02 ic ic-h">dirver</h2>
+            <h2 class="heading02 ic ic-h">driver</h2>
             <p><%= link_to @user.name , user_path(@user) %></p>
           </section>
             <section>
@@ -26,7 +26,7 @@
               <table class="tb02">
                 <tr>
                   <th>heat</th>
-                  <th>car</th>
+                  <th>車種名</th>
                 </tr>
                 <tr>
                   <td><%= f.select :number, [1, 2, 3, 4, 5],{} ,class: 'wd01' %></td>
@@ -38,20 +38,14 @@
               <h2 class="heading02 ic ic-cond">condition</h2>
               <table class="tb02">
                 <tr>
-                  <th>weather</th>
-                  <th>temperature</th>
+                  <th>天気</th>
+                  <th>気温</th>
+                  <th>路面状態</th>
                 </tr>
                 <tr>
                   <td><%= f.select :weather, ['晴れ', '曇り', '雨', '雪'],{} ,class: 'wd02' %></td>
                   <td><%= f.number_field :temp, step: "0.01" ,class: 'wd02' %></td>
-                </tr>
-                <tr>
-                  <th>road condition</th>
-                  <th>road temperature</th>
-                </tr>
-                <tr>
                   <td><%= f.select :roadcondition, ['ドライ', 'ハーフウェット', 'ウェット'] ,class: 'wd02' %></td>
-                  <td><%= f.number_field :roadtemp, step: "0.01" ,class: 'wd02' %></td>
                 </tr>
               </table>
             </section>
@@ -78,7 +72,7 @@
               <h2 class="heading02 ic ic-setting-w">setting</h2>
               <%= f.fields_for :settings do |setting_f| %>
               <dl>
-                <dt>tire</dt>
+                <dt>タイヤ名</dt>
                 <dd><%= f.text_field :tirename ,class: '' %></dd>
               </dl>
 
@@ -89,12 +83,12 @@
                   <th colspan="2">rear</th>
                 </tr>
                 <tr>
-                  <th>tire width</th>
+                  <th>タイヤサイズ</th>
                   <td colspan="2"><%= setting_f.number_field :ftirewidth ,class: 'wd02' %></td>
                   <td colspan="2"><%= setting_f.number_field :rtirewidth ,class: 'wd02' %></td>
                 </tr>
                 <tr>
-                  <th>damping</th>
+                  <th>減衰力</th>
                   <td colspan="2"><%= setting_f.number_field :fdecay ,class: 'wd02' %></td>
                   <td colspan="2"><%= setting_f.number_field :rdecay ,class: 'wd02' %></td>
                 </tr>
@@ -106,14 +100,14 @@
                   <th>left</th>
                 </tr>
                 <tr>
-                  <th>air pressure</th>
+                  <th>空気圧</th>
                   <td><%= setting_f.number_field :frpress, step: "0.01" ,class: 'wd02' %></td>
                   <td><%= setting_f.number_field :flpress, step: "0.01" ,class: 'wd02' %></td>
                   <td><%= setting_f.number_field :rrpress, step: "0.01" ,class: 'wd02' %></td>
                   <td><%= setting_f.number_field :rlpress, step: "0.01" ,class: 'wd02' %></td>
                 </tr>
                 <tr>
-                  <th>remarks</th>
+                  <th>備考</th>
                   <td colspan="4"><%= setting_f.text_area :remarks ,class: '' %></td>
                 </tr>
               </table>
@@ -122,9 +116,9 @@
               <%= hidden_field_tag :circuit_id, @circuit.id %>
             </section>
             <div class="btn-wrap center">
-              <div class="btn"><%= f.submit 'change', class: '' %></div>
-              <div class="btn"><%= link_to 'back', heat_path %></div>
-              <div class="btn btn-red"><%= link_to 'delete', @heat, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></div>
+              <div class="btn"><%= f.submit '変更する', class: '' %></div>
+              <div class="btn"><%= link_to '戻る', heat_path %></div>
+              <div class="btn btn-red"><%= link_to '変更する', @heat, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></div>
             </div>
           <% end %>
         </div>

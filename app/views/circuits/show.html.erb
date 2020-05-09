@@ -16,22 +16,25 @@
             </div>
           </div>
           <div class="cell">
-            <section class="besttime">
-              <h2 class="heading02 ic ic-flag">best time</h2>
-              <% if @besttimes.present? %>
-                <ul class="list-dot">
-                  <% @heats.each do |heat| %>
-                    <li>
-                      <%= link_to(heat) do %>
-                        <p class="username"><%= heat.datalist.user.name %></p>
-                        <p class="time"><%= @besttime %></p>
-                      <% end %>
-                    </li>
-                  <% end %>
-                </ul>
-              <% else %>
-                <p>ラップタイムが登録されていません</p>
-              <% end %>
+            <section>
+              <h2 class="heading02 ic ic-flag">ranking</h2>
+              <div class="ranking">
+                <div class="podium">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <ol>
+                    <% @besttimes.each do |time| %>
+                        <li>
+                          <%= link_to (time.heat) do %>
+                            <p class="name"><%= time.heat.user.name %></p>
+                            <p class="time"><%= time.total %></p>
+                          <% end %>
+                        </li>
+                    <% end %>
+                  </ol>
+                </div>
+              </div>
             </section>
 
             <section>
@@ -42,7 +45,7 @@
                     <%= form_for(@event) do |f| %>
                       <%= f.date_field :day, class: '' %>
                       <%= hidden_field_tag :circuit_id, @circuit.id %>
-                      <div class="btn"><%= f.submit 'add day', class: '' %></div>
+                      <div class="btn"><%= f.submit '開催日を追加する', class: '' %></div>
                     <% end %>
                   </div>
                 <% end %>
@@ -60,11 +63,11 @@
           </div>
         </div>
         <div class="btn-wrap">
-          <div class="btn"><%= link_to 'circuit list', circuits_path %></div>
+          <div class="btn"><%= link_to 'サーキット一覧へ', circuits_path %></div>
           <% if logged_in? %>
             <% if current_user.admin?  %>
-              <div class="btn"><%= link_to 'edit', edit_circuit_path(@circuit) %></div>
-              <div class="btn btn-red"><%= link_to 'delete', @circuit, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></div>
+              <div class="btn"><%= link_to '変更する', edit_circuit_path(@circuit) %></div>
+              <div class="btn btn-red"><%= link_to '削除', @circuit, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></div>
             <% end %>
           <% end %>
         </div>

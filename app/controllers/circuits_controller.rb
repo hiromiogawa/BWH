@@ -8,23 +8,11 @@ class CircuitsController < ApplicationController
   def show
     @circuit = Circuit.find(params[:id])
     @events = @circuit.events.all.order(day: "DESC").page(params[:page]).per(10)
-    @datalists = Datalist.includes(:event).where("events.circuit_id": @circuit.id).all
+    @besttimes = Laptime.includes(:heat).where("heats.circuit_id": @circuit.id).where.not(total: nil).all.order(:total).limit(3)
     if logged_in?
       if current_user.partake?(@circuit)
         @event = @circuit.events.build
       end
-    end
-    @besttimes =
-      @datalists.map do |data|
-        @bestheats = data.heats.all
-        @bestheats.map do |heat|
-          heat.laptimes.minimum(:total)
-        end
-      end
-
-    unless @besttimes.blank?
-      @besttime = @besttimes.min.min
-      @heats = Heat.includes(:laptimes, :datalist).where("laptimes.total": @besttime).where("datalists.id": @datalists).all
     end
   end
 

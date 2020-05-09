@@ -20,35 +20,39 @@
             </section>
             <section class="besttime">
               <h2 class="heading02 ic ic-flag">best time</h2>
-              <% unless @besttimes.blank? %>
+              <% unless @besttime.blank? %>
                 <ul class="list-dot">
-                  <% @bestheats.each do |heat| %>
-                    <li>
-                      <%= link_to(heat) do %>
-                        <p class="time"><%= @besttime %></p>
-                      <% end %>
-                    </li>
-                  <% end %>
+                  <li>
+                    <%= link_to(@besttime.heat) do %>
+                    <p class="time"><%= @besttime.total %></p>
+                    <% end %>
+                  </li>
                 </ul>
+              <% else %>
+                <p>登録されたデータはありません</p>
               <% end %>
             </section>
             <section>
               <h2 class="heading02 ic ic-h">data list</h2>
-              <ul class="list-dot">
-                <% @datalists.each do |datalist| %>
-                  <li>
-                    <%= link_to (datalist) do %>
-                      <%= link_to datalist.event.day, datalist_path(datalist, circuit_id: @circuit.id, event_id: datalist.event.id)  %>
+              <% unless @bestime.blank? %>
+                <ul class="list-dot">
+                  <% @datalists.each do |datalist| %>
+                    <li>
+                      <%= link_to (datalist) do %>
+                        <%= link_to datalist.event.day, datalist_path(datalist, circuit_id: @circuit.id, event_id: datalist.event.id)  %>
+                      <% end %>
+                    </li>
                     <% end %>
-                  </li>
-                  <% end %>
-              </ul>
+                </ul>
               <%= paginate @datalists %>
+              <% else %>
+                <p>登録されたデータはありません</p>
+              <% end %>
             </section>
           </div>
         </div>
         <div class="btn-wrap">
-          <div class="btn"><%= link_to 'user page', @user %></div>
+          <div class="btn"><%= link_to 'ユーザートップへ', @user %></div>
         </div>
       </div>
     </div>

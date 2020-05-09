@@ -49,12 +49,12 @@
           </ul>
         </section>
         <div class="btn-wrap">
-          <div class="btn"><%= link_to 'car list', cars_path %></div>
+          <div class="btn"><%= link_to '車種一覧', cars_path %></div>
           <% if logged_in? %>
 
             <% if current_user.admin?  %>
-              <div class="btn"><%= link_to 'edit', edit_car_path(@car) %></div>
-              <div class="btn btn-red"><%= link_to 'delete', @car, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></div>
+              <div class="btn"><%= link_to '変更する', edit_car_path(@car) %></div>
+              <div class="btn btn-red"><%= link_to '削除する', @car, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></div>
             <% end %>
           <% end %>
         </div>

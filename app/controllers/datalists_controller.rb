@@ -6,14 +6,7 @@ class DatalistsController < ApplicationController
     @circuit = Circuit.find(params[:circuit_id])
     @datalist = Datalist.find(params[:id])
     @heats = @datalist.heats.all.order(:number )
-    @besttimes =
-      @heats.map do |heat|
-        heat.laptimes.minimum(:total)
-      end
-      unless @besttimes.blank?
-        @besttime = @besttimes.min
-        @bestheats =@heats.includes(:laptimes).where("laptimes.total": @besttime).all
-      end
+    @besttime = Laptime.includes(:heat).where("heats.datalist_id": @datalist.id).where.not(total: nil).all.order(:total).first
   end
 
   def create
@@ -40,17 +33,7 @@ class DatalistsController < ApplicationController
     @user = User.find(params[:user_id])
     @circuit = Circuit.find(params[:circuit_id])
     @datalists = Datalist.includes(:event ,:user).where("events.circuit_id": @circuit.id).where("datalists.user_id": @user.id).all.order(day: "DESC").page(params[:page]).per(10)
-    @besttimes =
-      @datalists.map do |data|
-        @bestheats = data.heats.all
-        @bestheats.map do |heat|
-          heat.laptimes.minimum(:total)
-        end
-      end
-    unless @besttimes.blank?
-      @besttime = @besttimes.min.min
-      @bestheats = Heat.includes(:laptimes).where("laptimes.total": @besttime).all
-    end
+    @besttime = Laptime.includes(:heat).where("heats.circuit_id": @circuit.id).where("heats.user_id": @user.id).where.not(total: nil).all.order(:total).first
   end
 
   def cardata

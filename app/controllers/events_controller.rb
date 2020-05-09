@@ -10,19 +10,6 @@ class EventsController < ApplicationController
         @datalist = @event.datalists.build
       end
     end
-
-    # ベストタイム
-    @besttimes =
-      @datalists.map do |data|
-        @heats = data.heats.all
-        @heats.map do |heat|
-          heat.laptimes.minimum(:total)
-        end
-      end
-    unless @besttimes.blank?
-      @besttime = @besttimes.min.min
-      @heats = Heat.includes(:laptimes, :datalist).where("laptimes.total": @besttime).where("datalists.id": @datalists).all
-    end
   end
 
   def create

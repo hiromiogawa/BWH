@@ -17,7 +17,7 @@
             <div class="center">
               <div class="btn">
                 <%= f.label :img, class: "form-img" do %>
-                  <span>change image</span>
+                  <span>画像を追加する</span>
                   <%= f.file_field :img  %>
                 <% end %>
               </div>
@@ -31,8 +31,8 @@
           </div>
         </div>
         <div class="btn-wrap">
-          <div class="btn"><%= f.submit 'add' %></div>
-          <div class="btn"><%= link_to 'back', circuits_path %></div>
+          <div class="btn"><%= f.submit '追加する' %></div>
+          <div class="btn"><%= link_to '戻る', circuits_path %></div>
         </div>
       </div>
     </div>
