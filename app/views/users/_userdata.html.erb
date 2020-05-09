@@ -18,7 +18,7 @@
               <p class="username"><%= @user.name %></p>
               <div class="btn-wrap left">
                 <% if current_user  == @user %>
-                  <div class="btn"><%= link_to 'edit', edit_user_path(@user) %></div>
+                  <div class="btn"><%= link_to '変更する', edit_user_path(@user) %></div>
                   <div class="btn btn-red"><%= link_to '退会', user_path(current_user), method: :delete , data: { confirm: '本当に退会しますか？' } %></div>
                 <% end %>
               </div>
@@ -37,7 +37,7 @@
                 <p class="note">マイカー登録されていません</p>
               <% end %>
               <% if current_user  == @user %>
-                <div class="btn"><%= link_to 'add mycar', cars_path %></div>
+                <div class="btn"><%= link_to 'マイカーを追加する', cars_path %></div>
               <% end %>
             </section>
           </div>
@@ -45,7 +45,7 @@
         <section class="user-circuit">
           <h2 class="heading01 ic ic-circuit">my circuits</h2>
           <% if current_user  == @user %>
-            <div class="btn"><%= link_to 'add mycircuit', circuits_path %></div>
+            <div class="btn"><%= link_to 'マイサーキットを追加する', circuits_path %></div>
           <% end %>
           <% if @partake_circits.present? %>
             <ul class="col3">
