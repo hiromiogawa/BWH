@@ -82,6 +82,10 @@ GEM
     childprocess (3.0.0)
     concurrent-ruby (1.1.6)
     crass (1.0.6)
+    dotenv (2.7.5)
+    dotenv-rails (2.7.5)
+      dotenv (= 2.7.5)
+      railties (>= 3.2, < 6.1)
     erubi (1.9.0)
     excon (0.73.0)
     ffi (1.12.2-x64-mingw32)
@@ -245,6 +249,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   carrierwave
+  dotenv-rails
   fog-aws
   jbuilder (~> 2.7)
   kaminari
