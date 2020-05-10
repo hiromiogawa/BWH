@@ -20,6 +20,10 @@
   text-align: center !important;
 }
 
+.mb0 {
+  margin-bottom: 0 !important;
+}
+
 /* 背景
 -----------------------------------*/
 .bg-carbon {
@@ -236,7 +240,7 @@
 -----------------------------------*/
 .btn {
   display: inline-block;
-  margin-top: 1.2rem;
+  margin-top: $margin03;
   &:not(:last-of-type) {
     margin-right: 1.6em;
   }
@@ -273,7 +277,7 @@
 
       &:hover {
         background-color: #FFF;
-        color: $color04;
+        color: $color04 !important;
       }
     }
   }
@@ -475,17 +479,17 @@ dt {
   font-size: 0;
 
   li {
-    width: calc((100% - (1.6rem * 2)) / 3);
+    width: calc((100% - (#{$margin03} * 2)) / 3);
     font-size: 1.6rem;
     display: inline-block;
     vertical-align: top;
 
     &:not(:nth-of-type(3n)) {
-      margin-right: 1.6rem;
+      margin-right: $margin03;
     }
 
     &:not(:nth-of-type(-n+3)) {
-      margin-top: 1.6rem;
+      margin-top: $margin03;
     }
 
     a {
@@ -495,7 +499,7 @@ dt {
         display: flex;
         align-items: center;
         text-align: center;
-        margin-bottom: .8rem;
+        margin-bottom: $margin04;
 
         img {
           width: 100%;
@@ -513,7 +517,7 @@ dt {
 .col2 {
   font-size: 0;
   letter-spacing: -.4em;
-  margin-bottom: 1.6rem;
+  margin-bottom: $margin02;
 
   .cell {
     font-size: 1.6rem;

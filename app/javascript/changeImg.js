@@ -1,4 +1,7 @@
 $(function() {
+  if ($('.thumbnail').length){
+    imgSize();
+  }
 
   $fileField = '';
 
@@ -9,8 +12,6 @@ $(function() {
   } else if ($('body').hasClass('circuit')) {
     $fileField = $('#circuit_img');;
   }
-
-  console.log($fileField)
 
   // 選択された画像を取得し表示
   $($fileField).on('change', $fileField, function(e) {
@@ -23,12 +24,23 @@ $(function() {
         $preview.empty();
         $preview.append($('<img>').attr({
           src: e.target.result,
-          width: "100%",
-          class: "preview",
-          title: file.name
         }));
       };
     })(file);
     reader.readAsDataURL(file);
+    setTimeout(imgSize, 10);
   });
 });
+
+var imgSize = function() {
+  var img = $('.thumbnail img'),
+    imgH = img.innerHeight(),
+    imgW = img.innerWidth();
+
+  if (imgH >= imgW) {
+    img.css({'height':'auto','width':'100%'});
+  } else {
+    img.css({'height':'100%','width':'auto'});
+  }
+
+}

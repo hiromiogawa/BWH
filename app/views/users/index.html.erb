@@ -9,7 +9,7 @@
             <% @users.each do |user| %>
               <li class="bg-aluminum">
                 <%= link_to (user), class:'bg-screw' do %>
-                  <div class="img-area">
+                  <div class="img-area mb0 thumbnail">
                     <% if user.img? %>
                       <%= image_tag user.img.url %>
                     <% else %>
