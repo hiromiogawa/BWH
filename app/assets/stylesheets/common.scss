@@ -77,6 +77,10 @@
 
 .font-c-red {
   color: $color04 !important;
+
+  &:hover {
+    color: $color04 !important;
+  }
 }
 
 .left {
@@ -310,6 +314,7 @@
         &:first-of-type {
           padding-right: .8rem;
           text-align: left;
+          vertical-align: top;
         }
       }
 
