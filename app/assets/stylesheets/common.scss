@@ -4,7 +4,7 @@
 /* 基本設定
 -----------------------------------*/
 .cts {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
@@ -19,7 +19,6 @@
 .center {
   text-align: center !important;
 }
-
 
 /* 背景
 -----------------------------------*/
@@ -43,6 +42,10 @@
     background-position: top 6px left 6px,  top 6px right 6px, bottom 6px left 6px, bottom 6px right 6px;
     padding: $padding02;
     height: 100%;
+
+    * {
+      color: $color01;
+    }
   }
 }
 
@@ -82,7 +85,7 @@
 .heading01 {
   font-family: $webfont02;
   font-size: 4.0rem;
-  margin-bottom: 1.2rem;
+  margin-bottom: $margin02;
 
   &.ic {
     padding-left: 4.8rem;
@@ -97,7 +100,7 @@
 .heading02 {
   font-family: $webfont02;
   font-size: 2.4rem;
-  margin-bottom: 1.2rem;
+  margin-bottom: $margin04;
 
   &.ic {
     padding-left: 3.2rem;
@@ -126,8 +129,16 @@
   background-image: image-url('common/com_ic02.png')
 }
 
+.ic-h-b::before {
+  background-image: image-url('common/com_ic02_b.png')
+}
+
 .ic-car::before {
   background-image: image-url('common/com_ic03.png')
+}
+
+.ic-car-b::before {
+  background-image: image-url('common/com_ic03_b.png')
 }
 
 .ic-circuit::before {
@@ -138,12 +149,24 @@
   background-image: image-url('common/com_ic05.png')
 }
 
+.ic-flag-b::before {
+  background-image: image-url('common/com_ic05_b.png')
+}
+
 .ic-calendar::before {
   background-image: image-url('common/com_ic06.png')
 }
 
+.ic-calendar-b::before {
+  background-image: image-url('common/com_ic06_b.png')
+}
+
 .ic-cond::before {
   background-image: image-url('common/com_ic07.png')
+}
+
+.ic-cond-b::before {
+  background-image: image-url('common/com_ic07_b.png')
 }
 
 .ic-setting::before {
@@ -166,6 +189,18 @@
   background-image: image-url('common/com_ic11.png')
 }
 
+.ic-link::before {
+  background-image: image-url('common/com_ic12.png')
+}
+
+.ic-heat::before {
+  background-image: image-url('common/com_ic13.png')
+}
+
+.ic-heat-b::before {
+  background-image: image-url('common/com_ic13_b.png')
+}
+
 /* リスト
 -----------------------------------*/
 .list-dot li {
@@ -186,7 +221,13 @@
   }
 
   &:not(:last-of-type) {
-    margin-bottom: 0.8rem;
+    margin-bottom: $margin04;
+  }
+}
+
+.list-dot-b li {
+  &::before {
+    background-image: url('common/list_ic01_b.png');
   }
 }
 
@@ -251,35 +292,69 @@
 /* テーブル
 -----------------------------------*/
 .tb01 {
+  border: solid 2px $color01;
+  width: 100%;
 
     tr {
 
       th {
         font-weight: bold;
-        padding: .4rem;
+        padding-bottom: .8rem;
+        text-align: left;
+        background-color: #CCC;
 
         &:first-of-type {
           padding-right: .8rem;
           text-align: left;
-          width: 25%;
         }
       }
 
       td {
-        padding: .4rem;
-        text-align: center;
       }
 
       th,td {
-        width: 18.75%;
+        width: 20%;
+        border: solid 1px $color01;
+        padding: $padding06;
       }
     }
+}
+
+.tb02 {
+  border: solid 2px $color01;
+  width: 100%;
+
+  th {
+    padding-bottom: .8rem;
+    background-color: #CCC;
+  }
+
+  th, td {
+    width: 25%;
+    text-align: left;
+    border: solid 1px $color01;
+    padding: $padding06;
+  }
+
 }
 
 table {
 
   th {
     font-family: $webfont02;
+  }
+
+  .pb{
+    th, td {
+      padding-bottom: $padding04;
+    }
+  }
+
+  .pb02 {
+
+    th, td {
+      padding-bottom: $padding05;
+    }
   }
 }
 
@@ -453,16 +528,30 @@ dt {
     }
 
     &:first-child {
-      width: 700px;
+      width: 500px;
     }
 
     &:last-child {
-      width: calc(100% - (700px + 3.2rem));
+      width: calc(100% - (500px + 3.2rem));
       margin-left: 3.2rem;
     }
 
     section:not(:last-of-type) {
       margin-bottom: $margin01;
+    }
+  }
+
+  &.col2-2 {
+
+    .cell {
+
+      &:first-child {
+        width: calc(100% - (700px + 3.2rem));
+      }
+
+      &:last-child {
+        width: 700px;
+      }
     }
   }
 }
@@ -629,7 +718,11 @@ dt {
 }
 
 .wd02 {
-  width: 16rem !important;
+  width: 10rem !important;
+}
+
+.wd-max {
+  width: 100%;
 }
 
 /* アラート

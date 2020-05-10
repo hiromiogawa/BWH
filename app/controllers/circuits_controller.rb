@@ -60,7 +60,7 @@ class CircuitsController < ApplicationController
 
   # Strong Parameter
   def circuit_params
-    params.require(:circuit).permit(:name, :img)
+    params.require(:circuit).permit(:name, :url, :img, :img2)
   end
 
 end

@@ -101,7 +101,7 @@ $ml: 120px;
         section {
 
           &:not(:last-of-type) {
-            margin-bottom: 2.4rem;
+            margin-bottom: $margin02;
           }
 
           .username {

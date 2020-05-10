@@ -17,7 +17,15 @@
           </div>
           <div class="cell">
             <section>
-              <h2 class="heading02 ic ic-flag">ranking</h2>
+              <h3 class="heading02 ic ic-link">homepage</h3>
+              <% unless @circuit.url %>
+                <p>URLが登録されていません</p>
+              <% else %>
+                <p><%= link_to @circuit.url, @circuit.url, target: :_blank  %></p>
+              <% end %>
+            </section>
+            <section>
+              <h3 class="heading02 ic ic-flag">ranking</h3>
               <div class="ranking">
                 <div class="podium">
                   <span></span>
@@ -38,7 +46,7 @@
             </section>
 
             <section>
-              <h2 class="heading02 ic ic-calendar">attack day</h2>
+              <h3 class="heading02 ic ic-calendar">attack day</h3>
               <% if logged_in? %>
                 <% if current_user.partake?(@circuit) %>
                   <div class="form">
@@ -57,14 +65,12 @@
               </ul>
               <%= paginate @events %>
             </section>
-            <% if logged_in? %>
-              <%= render 'joins/partake_button', circuit: @circuit %>
-            <% end %>
           </div>
         </div>
         <div class="btn-wrap">
           <div class="btn"><%= link_to 'サーキット一覧へ', circuits_path %></div>
           <% if logged_in? %>
+            <%= render 'joins/partake_button', circuit: @circuit %>
             <% if current_user.admin?  %>
               <div class="btn"><%= link_to '変更する', edit_circuit_path(@circuit) %></div>
               <div class="btn btn-red"><%= link_to '削除', @circuit, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></div>

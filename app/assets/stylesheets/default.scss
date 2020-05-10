@@ -23,7 +23,7 @@ a,input[type="submit"] {
   text-decoration: none;
 
   &:hover {
-    color: $color03;
+    color: $color03 !important;
   }
 }
 
@@ -37,4 +37,9 @@ img {
 
 dt {
   margin-bottom: .4rem;
+}
+
+textarea {
+  width: 100%;
+  height: 300px;
 }

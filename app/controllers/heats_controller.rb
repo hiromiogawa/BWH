@@ -18,7 +18,7 @@ class HeatsController < ApplicationController
     @circuit = Circuit.find(params[:circuit_id])
     @datalist = @event.datalists.where(user_id: @user.id).where(event_id: @event.id).first
     @heat = @datalist.heats.build
-    10.times{@heat.laptimes.build}
+    3.times{@heat.laptimes.build}
     @heat.settings.build
   end
 
@@ -73,6 +73,6 @@ class HeatsController < ApplicationController
   private
 
   def heat_params
-    params.require(:heat).permit(:car_id, :circuit_id, :user_id, :tirename, :number, :weather, :temp, :roadcondition, :roadtemp,  laptimes_attributes: [:id, :sec1, :sec2, :sec3, :total ], settings_attributes: [:id, :ftirewidth, :rtirewidth, :flpress, :frpress, :rlpress, :rrpress, :fdecay, :rdecay, :remarks ])
+    params.require(:heat).permit(:car_id, :circuit_id, :user_id, :tirename, :number, :weather, :temp, :roadcondition, :roadtemp,  laptimes_attributes: [:id, :sec1, :sec2, :sec3, :total ], settings_attributes: [:id, :ftirewidth, :rtirewidth, :flpress, :frpress, :rlpress, :rrpress,:flpress_after, :frpress_after, :rlpress_after, :rrpress_after, :fdecay, :rdecay, :remarks ])
   end
 end

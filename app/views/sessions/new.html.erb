@@ -5,17 +5,17 @@
         <div class="inner edit">
           <h2 class="heading01 ic ic-h">login</h2>
           <%= form_for(:session, url: login_path) do |f| %>
-          <dl>
-            <dt>email</dt>
-            <dd><%= f.email_field :email, class: '' %></dd>
-          </dl>
-          <dl>
-            <dt>password</dt>
-            <dd><%= f.password_field :password, class: '' %></dd>
-          </dl>
+            <dl>
+              <dt>email</dt>
+              <dd><%= f.email_field :email, class: '' %></dd>
+            </dl>
+            <dl>
+              <dt>password</dt>
+              <dd><%= f.password_field :password, class: '' %></dd>
+            </dl>
             <div class="btn-wrap center">
-              <div class="btn"><%= f.submit 'login', class: '' %></div>
-              <div class="btn"><%= link_to 'sign up', signup_path %></div>
+              <div class="btn"><%= link_to '新規登録', signup_path %></div>
+              <div class="btn"><%= f.submit 'ログイン', class: '' %></div>
             </div>
           <% end %>
         </div>

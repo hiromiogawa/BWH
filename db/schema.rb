@@ -14,13 +14,14 @@ ActiveRecord::Schema.define(version: 2020_04_19_140925) do
 
   create_table "cars", force: :cascade do |t|
     t.string "name"
-    t.binary "img", limit: 1048576
+    t.string "img"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "circuits", force: :cascade do |t|
     t.string "name"
+    t.string "url"
     t.string "img"
     t.string "img2"
     t.datetime "created_at", precision: 6, null: false
@@ -97,12 +98,16 @@ ActiveRecord::Schema.define(version: 2020_04_19_140925) do
   end
 
   create_table "settings", force: :cascade do |t|
-    t.integer "ftirewidth"
-    t.integer "rtirewidth"
+    t.string "ftirewidth"
+    t.string "rtirewidth"
     t.float "flpress"
     t.float "frpress"
     t.float "rlpress"
     t.float "rrpress"
+    t.float "flpress_after"
+    t.float "frpress_after"
+    t.float "rlpress_after"
+    t.float "rrpress_after"
     t.integer "fdecay"
     t.integer "rdecay"
     t.string "remarks"

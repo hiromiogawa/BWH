@@ -5,87 +5,87 @@
     <div class="profile bg-carbon">
       <div class="bg-screw">
         <h2 class="heading01 ic ic-circuit"><%= @circuit.name %></h2>
-        <div class="col2">
-          <div class="cell">
-            <div class="img-area">
-              <% if @circuit.img? %>
-                <%= image_tag @circuit.img.url %>
-              <% else %>
-                <%= image_tag('common/noimage.jpg') %>
-              <% end %>
-            </div>
-          </div>
-          <div class="cell">
-            <section>
-              <h2 class="heading02 ic ic-calendar">attack day</h2>
-              <p><%= @event.day %></p>
-            </section>
-            <section>
-              <h2 class="heading02 ic ic-h">dirver</h2>
-              <p><%= link_to @user.name , user_path(@user) %></p>
-            </section>
-            <section>
-              <h2 class="heading02 ic ic-cond">condition</h2>
-              <ul class="list-dot">
-                <li>
-                  <dl>
-                    <dt class="font02">天気</dt>
-                    <dd><%= @heat.weather %></dd>
-                  </dl>
-                </li>
-                <li>
-                  <dl>
-                    <dt class="font02">気温</dt>
-                    <dd><%= @heat.temp %>℃</dd>
-                  </dl>
-                </li>
-                <li>
-                  <dl>
-                    <dt class="font02">路面状態</dt>
-                    <dd><%= @heat.roadcondition %></dd>
-                  </dl>
-                </li>
-              </ul>
-            </section>
-            <section class="laptime">
-              <h2 class="heading02 ic ic-flag">laptime</h2>
-              <table>
-                <tr>
-                  <th class="font02">sector1</th>
-                  <th class="font02">sector2</th>
-                  <th class="font02">sector3</th>
-                  <th class="font02">total</th>
-                </tr>
-                <% @laptimes.each do |laptime| %>
-                  <% unless laptime.total.nil? %>
+        <div class="bg-aluminum">
+          <div class="bg-screw">
+            <div class="col2 col2-2">
+              <div class="cell">
+                <section>
+                  <h2 class="heading02 ic ic-calendar-b">attack day</h2>
+                  <p><%= @event.day %></p>
+                </section>
+                <section>
+                  <h2 class="heading02 ic ic-h-b">driver</h2>
+                  <p><%= link_to @user.name , user_path(@user) %></p>
+                </section>
+                <section>
+                  <h2 class="heading02 ic ic-car-b">car</h2>
+                  <p><%= link_to @heat.car.name , car_path(@heat.car) %></p>
+                </section>
+                <section>
+                  <h2 class="heading02 ic ic-heat-b">heat</h2>
+                  <p><%= @heat.number %>HEAT</p>
+                </section>
+                <section>
+                  <h2 class="heading02 ic ic-cond-b">condition</h2>
+                  <ul class="list-dot list-dot-b">
+                    <li>
+                      <dl>
+                        <dt class="font02">天気</dt>
+                        <dd><%= @heat.weather %></dd>
+                      </dl>
+                    </li>
+                    <li>
+                      <dl>
+                        <dt class="font02">気温</dt>
+                        <dd><%= @heat.temp %>℃</dd>
+                      </dl>
+                    </li>
+                    <li>
+                      <dl>
+                        <dt class="font02">路面状態</dt>
+                        <dd><%= @heat.roadcondition %></dd>
+                      </dl>
+                    </li>
+                  </ul>
+                </section>
+              </div>
+              <div class="cell">
+                <section class="laptime">
+                  <h2 class="heading02 ic ic-flag-b">laptime</h2>
+                  <table class="tb02">
                     <tr>
-                      <td><%= laptime.sec1 %></td>
-                      <td><%= laptime.sec2 %></td>
-                      <td><%= laptime.sec3 %></td>
-                      <td><%= laptime.total %></td>
+                      <th class="font02">sector1</th>
+                      <th class="font02">sector2</th>
+                      <th class="font02">sector3</th>
+                      <th class="font02">total</th>
                     </tr>
-                  <% end %>
-                <% end %>
-              </table>
-            </section>
-            <section class="setting">
-              <div class="bg-aluminum">
-                <div class="bg-screw">
+                    <% @laptimes.each do |laptime| %>
+                      <% unless laptime.total.nil? %>
+                        <tr>
+                          <td><%= laptime.sec1 %></td>
+                          <td><%= laptime.sec2 %></td>
+                          <td><%= laptime.sec3 %></td>
+                          <td><%= laptime.total %></td>
+                        </tr>
+                      <% end %>
+                    <% end %>
+                  </table>
+                </section>
+                <section class="setting">
                   <h2 class="heading02 ic ic-setting">setting</h2>
                   <% @settings.each do |setting| %>
-                    <dl class="tire-area">
-                      <dt class="font02 ic ic-tire">タイヤ名</dt>
-                      <dd><%= @heat.tirename %></dd>
-                    </dl>
-
                     <table class="tb01">
+                      <tr>
+                        <th>タイヤ名</th>
+                        <td colspan="4"><%= @heat.tirename %></td>
+                      </tr>
                       <tr>
                         <th></th>
                         <th class="font02" colspan="2">front</th>
                         <th class="font02" colspan="2">rear</th>
                       </tr>
                       <tr>
-                        <th class="font02">タイヤ幅</th>
+                        <th class="font02">タイヤサイズ</th>
                         <td colspan="2"><%= setting.ftirewidth %></td>
                         <td colspan="2"><%= setting.rtirewidth %></td>
                       </tr>
@@ -102,11 +102,23 @@
                         <th class="font02">left</th>
                       </tr>
                       <tr>
-                        <th class="font02">空気圧</th>
-                        <td><%= setting.frpress %></td>
-                        <td><%= setting.flpress %></td>
-                        <td><%= setting.rrpress %></td>
-                        <td><%= setting.rlpress %></td>
+                        <th rowspan="4">空気圧</th>
+                        <th colspan="4" class="left">走行前</td>
+                      </tr>
+                      <tr>
+                        <td><%= setting.frpress %>kgf/㎠</td>
+                        <td><%= setting.flpress %>kgf/㎠</td>
+                        <td><%= setting.rrpress %>kgf/㎠</td>
+                        <td><%= setting.rlpress %>kgf/㎠</td>
+                      </tr>
+                      <tr>
+                        <th colspan="4" class="left">走行後</td>
+                      </tr>
+                      <tr>
+                        <td><%= setting.frpress_after %>kgf/㎠</td>
+                        <td><%= setting.flpress_after %>kgf/㎠</td>
+                        <td><%= setting.rrpress_after %>kgf/㎠</td>
+                        <td><%= setting.rlpress_after %>kgf/㎠</td>
                       </tr>
                       <tr>
                         <th class="font02">備考</th>
@@ -114,9 +126,9 @@
                       </tr>
                     </table>
                   <% end %>
-                </div>
+                </section>
               </div>
-            </section>
+            </div>
           </div>
         </div>
         <div class="btn-wrap">
