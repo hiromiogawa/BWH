@@ -132,11 +132,11 @@
           </div>
         </div>
         <div class="btn-wrap">
+          <div class="btn"><%= link_to 'heat一覧へ', datalist_path(@datalist, circuit_id: @circuit.id, event_id: @event.id) %></div>
           <% if current_user  == @datalist.user %>
             <div class="btn"><%= link_to '変更する', edit_heat_path(@heat) %></div>
             <div class="btn btn-red"><%= link_to '削除する', @heat, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></div>
           <% end %>
-          <div class="btn"><%= link_to 'heat一覧へ', datalist_path(@datalist, circuit_id: @circuit.id, event_id: @event.id) %></div>
         </div>
       </div>
     </div>

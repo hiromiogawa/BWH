@@ -11,6 +11,15 @@ header {
   z-index: 999;
   margin-bottom: 40px;
 
+  h1 {
+
+    a {
+      &:hover {
+        opacity: .7;
+      }
+    }
+  }
+
   ul {
     display: flex;
     justify-content: space-between;
@@ -68,6 +77,29 @@ header {
 
         &.font-c-red:hover {
           text-shadow: 0 0 10px $color04,0 0 15px $color04;
+        }
+      }
+    }
+  }
+
+  &.active {
+
+    ul {
+
+      li {
+
+        a {
+
+          &::before {
+            background: rgba(0, 0, 0, 0);
+            transition: background .35s;
+            text-shadow: 0 0 10px $color03,0 0 15px $color03;
+          }
+
+
+          &.font-c-red {
+            text-shadow: 0 0 10px $color04,0 0 15px $color04;
+          }
         }
       }
     }

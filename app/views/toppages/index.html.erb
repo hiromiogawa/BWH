@@ -1,4 +1,5 @@
 <% if logged_in? %>
+  <div id="login"><%= image_tag('common/login.png') %></div>
   <%= render 'users/userdata' %>
 <% else %>
   <div class="btn-wrap center">

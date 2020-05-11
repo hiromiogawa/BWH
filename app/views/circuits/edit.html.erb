@@ -35,8 +35,8 @@
           </div>
         </div>
         <div class="btn-wrap">
-          <div class="btn"><%= f.submit '変更する' %></div>
           <div class="btn"><%= link_to '戻る', circuits_path %></div>
+          <div class="btn"><%= f.submit '変更する' %></div>
           <div><%= link_to '削除する', @circuit, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></div>
         </div>
       </div>
