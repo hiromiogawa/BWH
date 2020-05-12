@@ -1,9 +1,36 @@
 <% if logged_in? %>
-  <div id="login"><%= image_tag('common/login.png') %></div>
+  <div id="login">
+    <%= image_tag('common/login.png') %>
+  </div>
   <%= render 'users/userdata' %>
 <% else %>
-  <div class="btn-wrap center">
-      <div class="btn"><%= link_to '新規登録', signup_path %></div>
-      <div class="btn"><%= link_to 'ログイン', login_path %></div>
-  </div>
+<% @page_class = 'home' %>
+  <article>
+    <div class="mv">
+      <%= video_tag("/assets/videos/mv.mp4", autoplay: true, muted: true) %>
+      <section class="form">
+        <div class="edit">
+          <%= form_for(:session, url: login_path) do |f| %>
+            <dl>
+              <dt>email</dt>
+              <dd><%= f.email_field :email, class: '' %></dd>
+            </dl>
+            <dl>
+              <dt>password</dt>
+              <dd><%= f.password_field :password, class: '' %></dd>
+            </dl>
+            <div class="btn-wrap center">
+              <div class="btn"><%= f.submit 'login', class: '' %></div>
+            </div>
+          <% end %>
+        </div>
+      </section>
+
+    </div>
+
+
+    <div class="btn-wrap center">
+        <div class="btn"><%= link_to '新規登録', signup_path %></div>
+    </div>
+  </article>
 <% end %>
