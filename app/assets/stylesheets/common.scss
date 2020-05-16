@@ -306,6 +306,9 @@
 .btn-wrap {
   font-size: 0;
   text-align: right;
+  @include max-sm {
+    text-align: left;
+  }
 
   .btn:not(:last-of-type) {
       margin-right: 1.6rem;
@@ -507,13 +510,35 @@ dt {
     @include max-lg {
       font-size: 1.2rem;
     }
+    @include max-sm {
+      width: calc((100% - (#{$margin03})) / 2);
+    }
+
 
     &:not(:nth-of-type(3n)) {
       margin-right: $margin03;
+      @include max-sm {
+        margin-right: auto;
+      }
     }
 
     &:not(:nth-of-type(-n+3)) {
       margin-top: $margin03;
+      @include max-sm {
+        margin-top: auto;
+      }
+    }
+
+    &:not(:nth-of-type(2n)) {
+      @include max-sm {
+        margin-right: $margin03;
+      }
+    }
+
+    &:not(:nth-of-type(-n+2)) {
+      @include max-sm {
+        margin-top: $margin03;
+      }
     }
 
     a {
@@ -700,7 +725,8 @@ dt {
           width: calc(100% - (500px + 2.714vw));
         }
         @include max-md {
-          width: 500px;
+          width: 100%;
+          max-width: 500px;
         }
       }
     }

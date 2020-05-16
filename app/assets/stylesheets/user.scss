@@ -77,12 +77,20 @@ $ml: 120px;
         max-width: 800px;
         display: flex;
         justify-content: space-between;
+        @include max-sm {
+          flex-direction: column;
+        }
 
         .thumbnail {
           width: 320px;
           text-align: center !important;
           @include max-lg {
             width: 36.405vw;
+          }
+          @include max-sm {
+            max-width: 278px;
+            width: 100%;
+            margin:  0 auto;
           }
 
           #img {
@@ -95,6 +103,9 @@ $ml: 120px;
             justify-content: center;
             @include max-lg {
               height: 36.405vw;
+            }
+            @include max-sm {
+              height: 278px;
             }
           }
         }
@@ -111,6 +122,11 @@ $ml: 120px;
         @include max-lg {
           width: calc(100% - (36.405vw + 13.651vw));
           margin-left: 13.651vw;
+        }
+        @include max-sm {
+          width: 100%;
+          margin-left: 0;
+          margin-top: $margin01;
         }
 
         section {
@@ -145,7 +161,7 @@ $ml: 120px;
 .col2 {
 
   .cell {
-    
+
     &:last-child {
       @include max-md {
         font-size: 0;
@@ -159,10 +175,17 @@ $ml: 120px;
         font-size: 1.6rem;
         width: calc((100% - (#{$margin03} * 2)) / 3);
       }
+      @include max-sm {
+        width: 100%;
+      }
       &:not(:last-of-type) {
         @include max-md {
           margin-bottom: 0;
           margin-right: $margin03;
+        }
+        @include max-sm {
+          margin-bottom: $margin03;
+          margin-right: 0;
         }
       }
     }
