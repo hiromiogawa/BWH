@@ -2,10 +2,10 @@
 
 <div class="cts">
   <section>
-    <div class="profile bg-carbon">
+    <div class="bg-carbon">
       <div class="bg-screw">
         <h2 class="heading01 ic ic-car"><%= @car.name %> </h2>
-        <div class="col2">
+        <div class="col2 col2-3">
           <div class="cell">
             <div class="img-area">
               <% if @car.img? %>
@@ -16,19 +16,21 @@
             </div>
           </div>
           <div class="cell">
-            <h2 class="heading02 ic ic-h">car owners</h2>
-            <% if @havings_users.present? %>
-              <ul class="list-dot">
-                <% @havings_users.each do |user| %>
-                  <li><%= link_to user.name, user_path(user) %></li>
-                <% end %>
-              </ul>
-            <% else %>
-              <p>マイカー登録をしているユーザーがいません</p>
-            <% end %>
-            <% if logged_in? %>
-              <%= render 'ownerships/have_button', car: @car %>
-            <% end %>
+            <section>
+              <h2 class="heading02 ic ic-h">car owners</h2>
+              <% if @havings_users.present? %>
+                <ul class="list-dot">
+                  <% @havings_users.each do |user| %>
+                    <li><%= link_to user.name, user_path(user) %></li>
+                  <% end %>
+                </ul>
+              <% else %>
+                <p>マイカー登録をしているユーザーがいません</p>
+              <% end %>
+              <% if logged_in? %>
+                <%= render 'ownerships/have_button', car: @car %>
+              <% end %>
+            </section>
           </div>
         </div>
         <section>

@@ -1,7 +1,7 @@
 <header class="bg-carbon">
   <h1><a href="/"><%= image_tag('common/header_logo01.png') %></a></h1>
   <nav>
-    <ul>
+    <ul id="toggle_menu">
       <% if logged_in? %>
         <li><%= link_to 'Mypage', root_url %></li>
       <% end %>
@@ -15,6 +15,8 @@
         <li><%= link_to 'login', login_path %></li>
       <% end %>
     </ul>
-
   </nav>
+  <div class="menu">
+    <span></span><span></span><span></span>
+  </div>
 </header>

@@ -6,6 +6,12 @@
 .cts {
   max-width: 1000px;
   margin: 0 auto;
+  @include max-lg {
+    margin: 0 40px;
+  }
+  @include max-sm {
+    margin: 0 auto;
+  }
 }
 
 .left {
@@ -33,6 +39,11 @@
     background-size: 20px;
     background-position: top 12px left 12px,  top 12px right 12px, bottom 12px left 12px, bottom 12px right 12px;
     padding: $padding01;
+    @include max-sm {
+      background-size: 12px;
+      background-position: top 8px left 8px,  top 8px right 8px, bottom 8px left 8px, bottom 8px right 8px;
+      padding: $padding02;
+    }
   }
 }
 
@@ -46,6 +57,11 @@
     background-position: top 6px left 6px,  top 6px right 6px, bottom 6px left 6px, bottom 6px right 6px;
     padding: $padding02;
     height: 100%;
+    @include max-sm {
+      background-size: 6px;
+      background-position: top 3px left 3px,  top 3px right 3px, bottom 3px left 3px, bottom 3px right 3px;
+      padding: $padding03;
+    }
 
     * {
       color: $color01;
@@ -488,6 +504,9 @@ dt {
     font-size: 1.6rem;
     display: inline-block;
     vertical-align: top;
+    @include max-lg {
+      font-size: 1.2rem;
+    }
 
     &:not(:nth-of-type(3n)) {
       margin-right: $margin03;
@@ -539,12 +558,15 @@ dt {
 .col2 {
   font-size: 0;
   letter-spacing: -.4em;
-  margin-bottom: $margin02;
+  margin-bottom: $margin01;
 
   .cell {
     font-size: 1.6rem;
     display: inline-block;
     vertical-align: top;
+    @include max-md {
+      display: block;
+    }
 
     .img-area {
 
@@ -555,28 +577,131 @@ dt {
 
     &:first-child {
       width: 500px;
+      @include max-lg {
+        width: calc(100% - (388px + 2.714vw));
+      }
+      @include max-md {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto 3.2rem;
+      }
     }
 
     &:last-child {
       width: calc(100% - (500px + 3.2rem));
       margin-left: 3.2rem;
+      @include max-lg {
+        width: 388px;
+        margin-left: 2.714vw;
+      }
+      @include max-md {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+      }
     }
 
-    section:not(:last-of-type) {
-      margin-bottom: $margin01;
+    section {
+
+      &:not(:last-of-type) {
+        margin-bottom: $margin01;
+      }
     }
   }
 
   &.col2-2 {
 
     .cell {
+      @include max-md {
+        max-width: none;
+      }
 
       &:first-child {
         width: calc(100% - (700px + 3.2rem));
+        @include max-lg {
+          width: 100%;
+          font-size: 0
+        }
+
+        section {
+          @include max-lg {
+            display: inline-block;
+            vertical-align: top;
+            font-size: 1.6rem;
+            width: calc((100% - (#{$margin03} * 2)) / 3);
+            margin-bottom: 0;
+          }
+
+          &:not(:nth-of-type(-n+3)) {
+            @include max-lg {
+              margin-top: $margin02;
+            }
+          }
+
+          &:not(:nth-of-type(3n)) {
+            margin-right: $margin03;
+          }
+
+          &:last-of-type {
+            @include max-lg {
+              width: calc(((100% - #{$margin03}) / 3) * 2);
+              margin-right: 0;
+            }
+
+            .list-dot-b {
+              li {
+                display: inline-block;
+
+                &:not(:last-of-type) {
+                  margin-right: $margin04;
+                }
+              }
+            }
+          }
+        }
       }
 
       &:last-child {
         width: 700px;
+        @include max-lg {
+          width: 100%;
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  &.col2-3 {
+
+    .cell {
+      font-size: 1.6rem;
+      display: inline-block;
+      vertical-align: top;
+      @include max-md {
+        display: block;
+      }
+
+      .img-area {
+
+        img {
+          width: 100%;
+        }
+      }
+
+      &:first-child {
+        @include max-lg {
+          width: 100%;
+          max-width: 500px;
+        }
+      }
+
+      &:last-child {
+        @include max-lg {
+          width: calc(100% - (500px + 2.714vw));
+        }
+        @include max-md {
+          width: 500px;
+        }
       }
     }
   }
@@ -685,6 +810,9 @@ dt {
       &:nth-of-type(2) {
         top: 9rem;
         left: calc(25% - 1.9rem);
+        @include max-md {
+          left: calc(25% - 2.9rem);
+        }
 
         a {
           color: #c9caca;
@@ -694,6 +822,9 @@ dt {
       &:nth-of-type(3) {
         top: 15rem;
         left: calc(75% + 1.4rem);
+        @include max-md {
+          left: calc(75% + 2.4rem);
+        }
 
         a {
           position: relative;
@@ -791,8 +922,5 @@ dt {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    img {
-    }
   }
 }

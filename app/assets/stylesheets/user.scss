@@ -11,7 +11,10 @@
       a {
         display: flex;
         justify-content: space-between;
-        align-items: center;;
+        align-items: center;
+        @include max-lg {
+          display: block;
+        }
 
         .img-area {
           position: relative;
@@ -19,6 +22,9 @@
           height: 120px;
           border-radius: 50%;
           overflow: hidden;
+          @include max-lg {
+            margin: 0 auto 1.6rem !important;
+          }
 
           img {
             position: absolute;
@@ -33,10 +39,14 @@
 
         .name {
           width: calc(100% - (120px + 1.6rem));
-          font-size: 3.2rem;
+          font-size: 2.4rem;
           font-family: $webfont02;
           color: $color01;
           text-align: center;
+          @include max-lg {
+            width: 100%;
+            font-size: 1.8rem;
+          }
         }
 
         &:hover {
@@ -71,6 +81,9 @@ $ml: 120px;
         .thumbnail {
           width: 320px;
           text-align: center !important;
+          @include max-lg {
+            width: 36.405vw;
+          }
 
           #img {
             width: 100%;
@@ -79,7 +92,10 @@ $ml: 120px;
             overflow: hidden;
             display: flex;
             align-items: center;
-            justify-content: center;;
+            justify-content: center;
+            @include max-lg {
+              height: 36.405vw;
+            }
           }
         }
 
@@ -92,6 +108,10 @@ $ml: 120px;
       .statsu {
         width: calc(100% - (320px + #{$ml}));
         margin-left: $ml;
+        @include max-lg {
+          width: calc(100% - (36.405vw + 13.651vw));
+          margin-left: 13.651vw;
+        }
 
         section {
 
@@ -116,6 +136,35 @@ $ml: 120px;
     .btn {
       margin-top: 0;
       margin-bottom: $margin04;
+    }
+  }
+}
+
+.userdata
+
+.col2 {
+
+  .cell {
+    
+    &:last-child {
+      @include max-md {
+        font-size: 0;
+      }
+    }
+
+    section {
+      @include max-md {
+        display: inline-block;
+        vertical-align: top;
+        font-size: 1.6rem;
+        width: calc((100% - (#{$margin03} * 2)) / 3);
+      }
+      &:not(:last-of-type) {
+        @include max-md {
+          margin-bottom: 0;
+          margin-right: $margin03;
+        }
+      }
     }
   }
 }

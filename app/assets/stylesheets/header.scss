@@ -10,12 +10,29 @@ header {
   width: 100%;
   z-index: 999;
   margin-bottom: 40px;
+  @include max-sm {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 12px;
+    z-index: 999;
+    box-shadow: -4px 8px 4px -4px #000;
+  }
 
   h1 {
+    @include max-sm {
+      height: 32px;
+    }
 
     a {
+
       &:hover {
         opacity: .7;
+      }
+
+      img {
+        height: 100%;
+        width: auto;
       }
     }
   }
@@ -24,6 +41,16 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1.2rem;
+    @include max-sm {
+      position: fixed;
+      flex-direction: column;
+      background-image: image-url('common/com_bg01.jpg');
+      top: 56px;
+      right: 0;
+      box-shadow:-4px 8px 6px -4px #000000;
+      opacity: 0;
+    }
 
     li {
       display: flex;
@@ -39,6 +66,10 @@ header {
 
       &:not(:last-of-type) {
         margin-right: 24px;
+        @include max-sm {
+          margin-right: 0;
+          margin-bottom: 1.2rem;
+        }
       }
 
       a {
@@ -100,6 +131,64 @@ header {
           &.font-c-red {
             text-shadow: 0 0 10px $color04,0 0 15px $color04;
           }
+        }
+      }
+    }
+  }
+
+  .menu {
+    display: none;
+    position: relative;
+    width: 32px;
+    height: 24px;
+    margin-right: 19px;
+    @include max-sm {
+      display: block;
+    }
+
+    span {
+      position: absolute;
+      left: 0;
+      display: block;
+      border-radius: 4px;
+      height: 3px;
+      width: 32px;
+      background-color: #FFF;
+      transition: .3s;
+
+      &:nth-of-type(1) {
+        top: 0;
+      }
+
+      &:nth-of-type(2) {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &:nth-of-type(3) {
+        bottom: 0;
+      }
+    }
+
+    &.pushed {
+
+      span {
+
+        &:nth-of-type(1) {
+          top: 50%;
+          transform: translateX(-50%) rotate(45deg);
+          left: 50%
+        }
+
+        &:nth-of-type(2) {
+          opacity: 0;
+        }
+
+        &:nth-of-type(3) {
+          top: 50%;
+          bottom: auto;
+          transform: translateX(-50%) rotate(-45deg);
+          left: 50%
         }
       }
     }

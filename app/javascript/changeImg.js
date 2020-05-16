@@ -33,14 +33,16 @@ $(function() {
 });
 
 var imgSize = function() {
-  var img = $('.thumbnail img'),
-    imgH = img.innerHeight(),
-    imgW = img.innerWidth();
+  $('.thumbnail img').each(function () {
 
-  if (imgH >= imgW) {
-    img.css({'height':'auto','width':'100%'});
-  } else {
-    img.css({'height':'100%','width':'auto'});
-  }
+    var img = $(this),
+      imgH = img.innerHeight(),
+      imgW = img.innerWidth();
 
+    if (imgH >= imgW) {
+      img.css({'height':'auto','width':'100%'});
+    } else {
+      img.css({'height':'100%','width':'auto'});
+    }
+  });
 }
