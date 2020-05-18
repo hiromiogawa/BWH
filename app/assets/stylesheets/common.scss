@@ -30,6 +30,24 @@
   margin-bottom: 0 !important;
 }
 
+.max-xs {
+  @include max-xs {
+    display: none !important;
+  }
+}
+
+.min-xs {
+  @include min-xs {
+    display: none !important;
+  }
+}
+
+.wd-100 {
+  @include max-xs {
+    width: 100% !important;
+  }
+}
+
 /* 背景
 -----------------------------------*/
 .bg-carbon {
@@ -261,6 +279,10 @@
 .btn {
   display: inline-block;
   margin-top: $margin03;
+  @include max-xs {
+    width: 100%;
+    display: block;
+  }
   &:not(:last-of-type) {
     margin-right: 1.6em;
   }
@@ -282,6 +304,9 @@
     color: #FFF;
     min-width: 100px;
     text-align: center;
+    @include max-xs {
+      width: 100%;
+    }
 
     &:hover {
       background-color: #FFF;
@@ -306,13 +331,23 @@
 .btn-wrap {
   font-size: 0;
   text-align: right;
-  @include max-sm {
+  @include max-xs {
     text-align: left;
+    margin-top: 2.0rem;
   }
 
-  .btn:not(:last-of-type) {
+  .btn {
+
+    &:first-of-type {
+      @include max-xs {
+        margin-top: 0;
+      }
+    }
+
+    &:not(:last-of-type) {
       margin-right: 1.6rem;
     }
+  }
 }
 
 
@@ -321,29 +356,82 @@
 .tb01 {
   border: solid 2px $color01;
   width: 100%;
+  @include max-xs {
+    display: block;
+    border: none;
+  }
+
+  tbody {
+    @include max-xs {
+      display: block;
+    }
+  }
 
     tr {
+      @include max-xs {
+        font-size: 0;
+        display: block;
+        border: solid 2px $color01;
+      }
 
       th {
         font-weight: bold;
         padding-bottom: .8rem;
         text-align: left;
         background-color: #CCC;
+        @include max-xs {
+          width: 100%;
+          display: block;
+        }
 
         &:first-of-type {
           padding-right: .8rem;
           text-align: left;
           vertical-align: top;
         }
+
+        &.min-xs {
+          @include max-xs {
+            width: 50%;
+            display: inline-block;
+          }
+        }
       }
 
       td {
+        @include max-xs {
+          width: 50%;
+          display: inline-block;
+        }
       }
 
       th,td {
-        width: 20%;
         border: solid 1px $color01;
         padding: $padding06;
+        @include min-xs {
+          width: 20%;
+        }
+        @include max-xs {
+          font-size: 1.6rem;
+        }
+      }
+    }
+
+    .tb-mt20 {
+      @include max-xs {
+        margin-top: 2.0rem;
+      }
+    }
+
+    .bd-tp-none {
+      @include max-xs {
+        border-top: none;
+      }
+    }
+
+    .bd-bt-none {
+      @include max-xs {
+        border-bottom: none;
       }
     }
 }
@@ -351,6 +439,28 @@
 .tb02 {
   border: solid 2px $color01;
   width: 100%;
+  @include max-xs {
+    display: block;
+    border: none;
+  }
+
+  tbody {
+    @include max-xs {
+      display: block;
+    }
+  }
+
+  tr {
+    @include max-xs {
+      display: block;
+      border: solid 2px $color01;
+      font-size: 0;
+    }
+
+    &:not(:last-of-type) {
+      margin-bottom: $margin03;
+    }
+  }
 
   th {
     padding-bottom: .8rem;
@@ -362,6 +472,11 @@
     text-align: left;
     border: solid 1px $color01;
     padding: $padding06;
+    @include max-xs {
+      display: inline-block;
+      width: 50%;
+      font-size: 1.6rem;
+    }
   }
 
 }
@@ -656,6 +771,10 @@ dt {
             width: calc((100% - (#{$margin03} * 2)) / 3);
             margin-bottom: 0;
           }
+          @include max-xs {
+            width: 100%;
+            display: block;
+          }
 
           &:not(:nth-of-type(-n+3)) {
             @include max-lg {
@@ -667,15 +786,27 @@ dt {
             margin-right: $margin03;
           }
 
+          &:not(:last-of-type) {
+            @include max-xs {
+              margin-bottom: $margin02;
+            }
+          }
+
           &:last-of-type {
             @include max-lg {
               width: calc(((100% - #{$margin03}) / 3) * 2);
               margin-right: 0;
             }
+            @include max-xs {
+              width: 100%;
+            }
 
             .list-dot-b {
               li {
-                display: inline-block;
+                @include max-lg {
+                  display: inline-block;
+                  margin-bottom: 0;
+                }
 
                 &:not(:last-of-type) {
                   margin-right: $margin04;
@@ -819,6 +950,9 @@ dt {
       position: absolute;
       transform: translateX(-50%);
       padding: .8rem;
+      @include max-xs {
+        width: 27.322vw;
+      }
 
       a:hover {
         color: $color03 !important;
@@ -827,6 +961,9 @@ dt {
       &:nth-of-type(1) {
         top: 3rem;
         left: 50%;
+        @include max-xs {
+          top: 3.5rem;
+        }
 
         a {
           color: #ffd700;
@@ -839,6 +976,10 @@ dt {
         @include max-md {
           left: calc(25% - 2.9rem);
         }
+        @include max-xs {
+          left: calc(25% - 4vw);
+          top: 9.5rem;
+        }
 
         a {
           color: #c9caca;
@@ -850,6 +991,10 @@ dt {
         left: calc(75% + 1.4rem);
         @include max-md {
           left: calc(75% + 2.4rem);
+        }
+        @include max-xs {
+          top: 15.5rem;
+          left: calc(75% + 4vw);
         }
 
         a {
@@ -864,6 +1009,9 @@ dt {
         font-size: 1.6rem;
         font-weight: bold;
         text-shadow: 1px 1px 2px #000;
+        @include max-xs {
+          font-size: 1.4rem;
+        }
       }
 
       .time {
@@ -871,6 +1019,9 @@ dt {
         font-size: 2.0rem;
         font-family: $webfont02;
         text-shadow: 1px 1px 2px #000;
+        @include max-xs {
+          font-size: 1.6rem;
+        }
       }
     }
   }

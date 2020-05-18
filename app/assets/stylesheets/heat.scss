@@ -2,6 +2,9 @@
 @import "variable";
 
 .heat {
+  .col2 {
+    margin-bottom: 0;
+  }
 
   .setting {
 
@@ -33,9 +36,13 @@
     }
 
     table {
+      @include max-xs {
+        display: block;
+      }
 
       th,td {
         padding: .4rem;
+        display: block;
       }
 
       th {

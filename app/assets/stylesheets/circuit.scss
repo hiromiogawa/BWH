@@ -12,11 +12,18 @@
       vertical-align: middle;
       border: solid 2px $color03;
       border-right: none;
+      @include max-xs {
+        display: block;
+        width: 100%;
+      }
     }
 
     .btn {
       margin-top: 0;
       vertical-align: middle;
+      @include max-xs {
+        margin-top: .8rem;
+      }
     }
   }
   .btn-wrap {

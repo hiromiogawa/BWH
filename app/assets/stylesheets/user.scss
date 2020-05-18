@@ -92,6 +92,9 @@ $ml: 120px;
             width: 100%;
             margin:  0 auto;
           }
+          @include max-xs {
+            max-width: 180px;
+          }
 
           #img {
             width: 100%;
@@ -106,6 +109,9 @@ $ml: 120px;
             }
             @include max-sm {
               height: 278px;
+            }
+            @include max-xs {
+              height: 180px;
             }
           }
         }
@@ -137,6 +143,9 @@ $ml: 120px;
 
           .username {
             font-size: 2.4rem;
+            @include max-xs {
+              margin-bottom: 2.0rem;
+            }
           }
 
           li {

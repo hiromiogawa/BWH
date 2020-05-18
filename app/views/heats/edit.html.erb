@@ -58,7 +58,7 @@
                   <section class="laptime">
                     <h2 class="heading02 ic ic-flag-b">laptime</h2>
                     <table class="tb02">
-                      <tr>
+                      <tr class="max-xs">
                         <th class="font02">sector1</th>
                         <th class="font02">sector2</th>
                         <th class="font02">sector3</th>
@@ -66,9 +66,13 @@
                       </tr>
                       <%= f.fields_for :laptimes do |laptime_f| %>
                         <tr>
+                          <th class="font02 min-xs">sector1</th>
                           <td><%= laptime_f.number_field :sec1, step: "0.001",class: 'sector sec1 wd-max' %></td>
+                          <th class="font02 min-xs">sector2</th>
                           <td><%= laptime_f.number_field :sec2, step: "0.001",class: 'sector sec2 wd-max' %></td>
+                          <th class="font02 min-xs">sector3</th>
                           <td><%= laptime_f.number_field :sec3, step: "0.001",class: 'sector sec3 wd-max' %></td>
+                          <th class="font02 min-xs">total</th>
                           <td><%= laptime_f.number_field :total, step: "0.001",class: 'total' %></td>
                         </tr>
                       <% end %>
@@ -80,52 +84,64 @@
                       <table class="tb01">
                         <tr>
                           <th>タイヤ名</th>
-                          <td colspan="4"><%= f.text_field :tirename ,class: 'wd-max' %></td>
+                          <td class="wd-100" colspan="4"><%= f.text_field :tirename ,class: 'wd-max' %></td>
                         </tr>
-                        <tr>
+                        <tr class="max-xs">
                           <th></th>
                           <th class="font02" colspan="2">front</th>
                           <th class="font02" colspan="2">rear</th>
                         </tr>
-                        <tr>
+                        <tr class="tb-mt20">
                           <th class="font02">タイヤサイズ</th>
+                          <th class="font02 min-xs">front</th>
                           <td colspan="2"><%= setting_f.text_field :ftirewidth ,class: 'wd-max' %></td>
+                          <th class="font02 min-xs">rear</th>
                           <td colspan="2"><%= setting_f.text_field :rtirewidth ,class: 'wd-max' %></td>
                         </tr>
-                        <tr>
+                        <tr class="tb-mt20">
                           <th class="font02">減衰力</th>
+                          <th class="font02 min-xs">front</th>
                           <td colspan="2"><%= setting_f.number_field :fdecay ,class: 'wd02' %></td>
+                          <th class="font02 min-xs">rear</th>
                           <td colspan="2"><%= setting_f.number_field :rdecay ,class: 'wd02' %></td>
                         </tr>
-                        <tr>
+                        <tr class="max-xs">
                           <th></th>
                           <th class="font02">right</th>
                           <th class="font02">left</th>
                           <th class="font02">right</th>
                           <th class="font02">left</th>
                         </tr>
-                        <tr>
+                        <tr class="tb-mt20 bd-bt-none">
                           <th rowspan="4">空気圧</th>
                           <th colspan="4" class="left">走行前</th>
                         </tr>
-                        <tr>
+                        <tr class="bd-tp-none bd-bt-none">
+                          <th class="font02 min-xs">front/right</th>
                           <td><%= setting_f.number_field :frpress, step: "0.01" ,class: 'wd01' %>kgf/㎠</td>
+                          <th class="font02 min-xs">front/left</th>
                           <td><%= setting_f.number_field :flpress, step: "0.01" ,class: 'wd01' %>kgf/㎠</td>
+                          <th class="font02 min-xs">rear/right</th>
                           <td><%= setting_f.number_field :rrpress, step: "0.01" ,class: 'wd01' %>kgf/㎠</td>
+                          <th class="font02 min-xs">rear/left</th>
                           <td><%= setting_f.number_field :rlpress, step: "0.01" ,class: 'wd01' %>kgf/㎠</td>
                         </tr>
                         <tr>
                           <th colspan="4" class="left">走行後</th>
                         </tr>
                         <tr>
+                          <th class="font02 min-xs">front/right</th>
                           <td><%= setting_f.number_field :frpress_after, step: "0.01" ,class: 'wd01' %>kgf/㎠</td>
+                          <th class="font02 min-xs">front/left</th>
                           <td><%= setting_f.number_field :flpress_after, step: "0.01" ,class: 'wd01' %>kgf/㎠</td>
+                          <th class="font02 min-xs">rear/right</th>
                           <td><%= setting_f.number_field :rrpress_after, step: "0.01" ,class: 'wd01' %>kgf/㎠</td>
+                          <th class="font02 min-xs">rear/left</th>
                           <td><%= setting_f.number_field :rlpress_after, step: "0.01" ,class: 'wd01' %>kgf/㎠</td>
                         </tr>
-                        <tr>
+                        <tr class="tb-mt20">
                           <th class="font02">備考</th>
-                          <td class="left remarks" colspan="4"><%= setting_f.text_area :remarks ,class: '' %></td>
+                          <td class="left remarks wd-100" colspan="4"><%= setting_f.text_area :remarks ,class: '' %></td>
                         </tr>
                       </table>
                     <% end %>
