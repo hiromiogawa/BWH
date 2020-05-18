@@ -1066,6 +1066,11 @@ dt {
   top: 100px;
   left: 0;
   padding: 24px;
+  @include max-sm {
+    padding: 12px;
+    font-size: 12px;
+    top: 72px;
+  }
 
   &.alert-danger {
     background-color: $color04;
