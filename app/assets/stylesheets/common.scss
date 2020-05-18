@@ -783,7 +783,9 @@ dt {
           }
 
           &:not(:nth-of-type(3n)) {
-            margin-right: $margin03;
+            @include max-lg {
+              margin-right: $margin03;
+            }
           }
 
           &:not(:last-of-type) {
@@ -1066,6 +1068,7 @@ dt {
   top: 100px;
   left: 0;
   padding: 24px;
+  z-index: 999;
   @include max-sm {
     padding: 12px;
     font-size: 12px;
