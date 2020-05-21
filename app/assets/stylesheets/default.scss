@@ -20,6 +20,9 @@ body {
 
 main {
   margin-top: 88px;
+  @include max-sm {
+    margin-top: 88px;
+  }
 }
 
 a,input[type="submit"] {
