@@ -1,9 +1,12 @@
 <% if logged_in? %>
-  <div id="login">
-    <%= image_tag('common/login.png') %>
-  </div>
+  <% if @stasu == 'login' %>
+    <div id="login">
+      <%= image_tag('common/login.png') %>
+    </div>
+  <% end %>
   <%= render 'users/userdata' %>
 <% else %>
+
 <% @page_class = 'home' %>
   <article>
     <div class="mv">
