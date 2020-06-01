@@ -41,6 +41,8 @@ var imgSize = function() {
 
     if (imgH <= imgW) {
       img.css({'height':'auto','width':'100%'});
+    } else if (imgH >= imgW) {
+      img.css({'height':'100%','width':'auto'});
     }
   });
 }
