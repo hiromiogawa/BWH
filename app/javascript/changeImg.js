@@ -28,7 +28,7 @@ $(function() {
       };
     })(file);
     reader.readAsDataURL(file);
-    setTimeout(imgSize, 10);
+    setTimeout(imgSize, 100);
   });
 });
 
