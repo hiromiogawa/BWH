@@ -13,6 +13,26 @@
               <% else %>
                 <%= image_tag('common/noimage.jpg') %>
               <% end %>
+              <section>
+                <h3 class="heading02 ic ic-calendar">attack day</h3>
+                <% if logged_in? %>
+                  <% if current_user.partake?(@circuit) %>
+                    <div class="form">
+                      <%= form_for(@event) do |f| %>
+                        <%= f.date_field :day, class: '' %>
+                        <%= hidden_field_tag :circuit_id, @circuit.id %>
+                        <div class="btn"><%= f.submit '開催日を追加する', class: '' %></div>
+                      <% end %>
+                    </div>
+                  <% end %>
+                <% end %>
+                <ul class="list-dot">
+                  <% @events.each do |event| %>
+                    <li><%= link_to event.day, event_path(event, circuit_id: @circuit.id)  %></li>
+                  <% end %>
+                </ul>
+                <%= paginate @events %>
+              </section>
             </div>
           </div>
           <div class="cell">
@@ -43,27 +63,6 @@
                   </ol>
                 </div>
               </div>
-            </section>
-
-            <section>
-              <h3 class="heading02 ic ic-calendar">attack day</h3>
-              <% if logged_in? %>
-                <% if current_user.partake?(@circuit) %>
-                  <div class="form">
-                    <%= form_for(@event) do |f| %>
-                      <%= f.date_field :day, class: '' %>
-                      <%= hidden_field_tag :circuit_id, @circuit.id %>
-                      <div class="btn"><%= f.submit '開催日を追加する', class: '' %></div>
-                    <% end %>
-                  </div>
-                <% end %>
-              <% end %>
-              <ul class="list-dot">
-                <% @events.each do |event| %>
-                  <li><%= link_to event.day, event_path(event, circuit_id: @circuit.id)  %></li>
-                <% end %>
-              </ul>
-              <%= paginate @events %>
             </section>
           </div>
         </div>
