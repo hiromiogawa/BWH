@@ -2,7 +2,10 @@
 <img src="https://img.shields.io/badge/Javascript-276DC3.svg?logo=javascript&style=flat"><img src="https://img.shields.io/badge/-CSS3-1572B6.svg?logo=css3&style=flat"><img src="https://img.shields.io/badge/-HTML5-333.svg?logo=html5&style=flat"><img src="https://img.shields.io/badge/-Rails-CC0000.svg?logo=rails&style=flat">
 
 
+
+
 # BWH(サーキット走行管理アプリケーション)
+https://circuitbwh.herokuapp.com/
 
 
   ●BWH(サーキット走行管理アプリケーション）とは
@@ -17,7 +20,7 @@
   ●BWH(サーキット走行管理アプリケーション)の目的
   
     ・従来のサーキット走行のデータ管理の問題点
-      従来の方法ではサーキットから発行されるタイムデータと、自身で記録している自動車のセッティングデータをエクセルなどを使用して管理する必要がありま       した。
+      従来の方法ではサーキットから発行されるタイムデータと、自身で記録している自動車のセッティングデータをエクセルなどを使用して管理する必要がありま した。
       個人でのデータ管理となるため自動車のセッティングをする際も、自身のデータのみをもとにデータ管理を行う必要がありました。
 
 
@@ -51,9 +54,9 @@
       -サーキットごとのデータ管理
       ・サーキットごとのタイムランキング機能
 
-  ●管理者権限のみの機能
-    ・サーキット追加、削除機能
-    ・車種追加、削除機能
+    ●管理者権限のみの機能
+      ・サーキット追加、削除機能
+      ・車種追加、削除機能
 
 
 
